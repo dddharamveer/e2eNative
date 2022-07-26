@@ -1,27 +1,18 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import ButtonUi from "../components/ui/ButtonsUi";
-import LinearGradient from "react-native-linear-gradient";
+
 
 const HomePage = () => {
   return (
-    // <LinearGradient
-    //   colors={["#B3002C", "#B33E00", "#FF6A19"]}
-    //   style={{ flex: 1 }}
-    // >
     <View style={styles.container}>
       <View>
         <Text style={styles.title}>Tasker</Text>
         <Text style={styles.subTitle}>Get Things Done By Us...</Text>
       </View>
-
-      <View style={styles.button}>
-        <ButtonUi color="white" backgroundColor="white">
-          Log in
-        </ButtonUi>
-        <ButtonUi fill color="#FF6A19" backgroundColor="white">
-          Sign Up
-        </ButtonUi>
+      <View style={styles.Buttons}>
+        <ButtonUi backgroundColor="black" color="black">Log in</ButtonUi>
+        <ButtonUi fill backgroundColor="black" color="white">Sign up</ButtonUi>
         <Text style={[styles.subTitle, { fontSize: 16 }]}>
           or continue with
         </Text>
@@ -33,19 +24,11 @@ const HomePage = () => {
         </Text>
       </View>
     </View>
-    // </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column",
-    paddingHorizontal: "10%",
-    paddingTop: "37%",
-    backgroundColor: "#FF6A19",
-    justifyContent: "space-between",
-  },
+
   title: {
     fontSize: 48,
     color: "white",
@@ -53,9 +36,19 @@ const styles = StyleSheet.create({
   subTitle: {
     color: "white",
   },
-  button: {
-    alignItems: "center",
+
+  container: {
+    backgroundColor: "#FF6A19",
+    marginTop: 50,
+    padding: 20,
+    flex: 1,
+    justifyContent: 'space-between'
   },
+  Buttons: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 4 / 12
+  }
 });
 
 export default HomePage;
