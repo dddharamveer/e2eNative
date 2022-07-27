@@ -1,6 +1,20 @@
+import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-const ButtonUi = ({ backgroundColor, color, fill, children, onPress }) => {
+type button = {
+  backgroundColor: string;
+  color: string;
+  fill?: boolean;
+  onPress: () => void;
+};
+
+const ButtonUi = ({
+  backgroundColor,
+  color,
+  fill,
+  children,
+  onPress,
+}: React.PropsWithChildren<button>) => {
   return (
     <Pressable
       onPress={onPress}
@@ -12,6 +26,7 @@ const ButtonUi = ({ backgroundColor, color, fill, children, onPress }) => {
       ]}
     >
       <View>
+        {/* @ts-ignore */}
         <Text style={[styles.text, color && { color: color }]}>{children}</Text>
       </View>
     </Pressable>
@@ -31,6 +46,5 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 15,
-    color: "black",
   },
 });
