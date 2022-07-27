@@ -1,5 +1,7 @@
+
+
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import ButtonUi from "../components/ui/ButtonsUi";
 import { LinearGradient } from "expo-linear-gradient";
 import IconButton from "../components/ui/IconButton";
@@ -14,14 +16,19 @@ const HomePage = ({ navigation }) => {
   ]
   return (
     <LinearGradient
-      start={{ x: 0, y: 0 }}
-      end={{ x: 0.5, y: 1 }}
-      colors={["#EC8044", "#B33E00", "#730903"]}
+      colors={[
+        "rgba(255, 106, 25, 1)",
+        "rgba(179, 62, 0, 1)",
+        "rgba(179, 0, 44, 1)",
+      ]}
       style={styles.container}
     >
-      <View style={styles.header}>
-        <Text style={styles.title}>Tasker</Text>
-        <Text style={styles.subTitle}>Get Things Done By Us...</Text>
+      <View style={[styles.header, {flexDirection: 'row', justifyContent: 'space-between', marginTop: '10%'}]}>
+        <View>
+          <Text style={styles.title}>Tasker</Text>
+          <Text style={styles.subTitle}>Get Things Done By Us...</Text>
+        </View>
+        <Image source={require('../assets/item1.png')} />
       </View>
 
       <View style={styles.authContainer}>
@@ -38,7 +45,7 @@ const HomePage = ({ navigation }) => {
         {/* Google or faceicon login */}
         <ExterAuthIcons />
         <View style={styles.terms}>
-          <Text style={styles.subTitle}>
+          <Text style={styles.FootersubTitle}>
             By signin up, I agree to Tasker’s{" "}
             <Text style={{ textDecorationLine: "underline" }}>
               Terms & Conditions
@@ -53,7 +60,8 @@ const HomePage = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   header: {
-    flex: 1,
+    flex: 6 / 12,
+    justifyContent: 'center'
   },
   title: {
     fontSize: 48,
@@ -61,24 +69,29 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     color: "white",
-    textAlign: "center",
-  },
 
+  },
+  FootersubTitle: {
+    textAlign: 'center'
+    , color: "white",
+  }
+  ,
   container: {
     backgroundColor: "#FF6A19",
 
-    paddingHorizontal: 30,
+    paddingLeft: 30,
     paddingVertical: 40,
     flex: 1,
   },
   authContainer: {
     flex: 1,
     justifyContent: "flex-end",
+    paddingRight: 30,
   },
   Buttons: {
     justifyContent: "center",
     alignItems: "center",
-    flex: 7 / 12,
+    flex: 4 / 12,
   },
   comment: {
     marginTop: 10,
