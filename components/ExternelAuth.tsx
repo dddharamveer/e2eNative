@@ -4,9 +4,9 @@ import IconButton from "./ui/IconButton";
 const ExterAuthIcons = () => {
   return (
     <View style={styles.logo}>
-      <IconButton name="logo-facebook" color="white" size={24} />
-      <IconButton name="logo-google" color="white" size={24} />
-      <IconButton name="logo-apple" color="white" size={24} />
+      <IconButton name="facebook" iconColor="blue" color="white" size={24} />
+      <IconButton name="google" iconColor="blue" color="white" size={24} />
+      <IconButton name="apple" color="white" size={24} />
     </View>
   );
 };

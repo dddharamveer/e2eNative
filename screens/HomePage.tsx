@@ -4,6 +4,7 @@ import ButtonUi from "../components/ui/ButtonsUi";
 import { LinearGradient } from "expo-linear-gradient";
 import IconButton from "../components/ui/IconButton";
 import ExterAuthIcons from "../components/ExternelAuth";
+import { Colors } from "../contents/Colors";
 
 const HomePage = ({ navigation }: { navigation: any }) => {
   const LoginNavigation = () => {
@@ -16,25 +17,39 @@ const HomePage = ({ navigation }: { navigation: any }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Tasker</Text>
-        <Text style={styles.subTitle}>Get Things Done By Us...</Text>
+        <View style={styles.logoView}>
+          <Image
+            resizeMode="contain"
+            style={styles.logo}
+            source={require("../assets/image.png")}
+          />
+        </View>
       </View>
       <View style={styles.authContainer}>
-      <View style={styles.Buttons}>
-                  <ButtonUi backgroundColor="#6e381b" color="black" onPress={LoginNavigation}>
+        <View style={styles.Buttons}>
+          <ButtonUi
+            backgroundColor={Colors.secondary}
+            color="black"
+            onPress={LoginNavigation}>
             Log in
           </ButtonUi>
-          <ButtonUi fill onPress={SignUpNavigation} backgroundColor="#6e381b" color="white">
+          <ButtonUi
+            fill
+            onPress={SignUpNavigation}
+            backgroundColor={Colors.secondary}
+            color="white">
             Sign up
           </ButtonUi>
-                  <Text style={styles.comment}>or continue with</Text>
-          </View>
-        <View style={styles.logo}>
-          <ExterAuthIcons />
+          <Text style={styles.comment}>or continue with</Text>
         </View>
-
+<View style={styles.authLogo}>
+  <ExterAuthIcons />
+</View>
         <View style={styles.terms}>
           <Text style={styles.FootersubTitle}>
-            By signin up, I agree to Tasker’s <Text style={{ textDecorationLine: "underline" }}>Terms & Conditions
+            By signin up, I agree to Tasker’s{" "}
+            <Text style={{ textDecorationLine: "underline" }}>
+              Terms & Conditions
             </Text>
             , & Community Guildelines. Privacy Policy.
           </Text>
@@ -46,52 +61,61 @@ const HomePage = ({ navigation }: { navigation: any }) => {
 
 const styles = StyleSheet.create({
   container: {
-  margin:30,
-    
+    margin: 30,
+
     flex: 1,
   },
 
   header: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-end",
   },
 
   title: {
     fontSize: 48,
     color: "black",
+    fontFamily: "Rubik_300Light",
+    textAlign: "center",
+  },
+  logoView: {
+    flex: 8 / 12,
+  },
+  logo: {
+    width: "100%",
+    height: "100%",
   },
   subTitle: {
     color: "black",
   },
   authContainer: {
+    marginTop:"15%",
+    justifyContent:'space-between',
     flex: 1,
     width: "100%",
-justifyContent:'flex-end'
- 
-    
+
   },
 
-  Buttons:{
-    flex:9/12,
-    justifyContent:'space-around'
+  Buttons: {
+   flex:10/12,
+    justifyContent: "space-around",
   },
 
   comment: {
-    marginVertical:10,
+    fontFamily: "Rubik_300Light",
+    marginTop:"10%",
     color: "black",
     textAlign: "center",
   },
+authLogo:{
 
-  logo: { marginVertical:15 },
+},
   terms: {
-   
-   marginVertical:10
+
   },
   FootersubTitle: {
     textAlign: "center",
     color: "black",
   },
-
 });
 
 export default HomePage;
