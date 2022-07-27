@@ -17,11 +17,12 @@ const ButtonUi = ({
 }: React.PropsWithChildren<button>) => {
   return (
     <Pressable
+      android_ripple={{ color: "#cb646493" }}
       onPress={onPress}
       style={[
         styles.Button,
         fill
-          ? { backgroundColor: backgroundColor }
+          ? { backgroundColor: backgroundColor, elevation: 3 }
           : { borderWidth: 2, borderColor: backgroundColor },
       ]}
     >
@@ -37,10 +38,12 @@ export default ButtonUi;
 
 const styles = StyleSheet.create({
   Button: {
-    marginTop: 10,
+    flex: 1,
     width: "100%",
     height: "15%",
-    borderRadius: 10,
+    marginTop: 10,
+
+    borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
   },

@@ -1,67 +1,65 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import ButtonUi from "../components/ui/ButtonsUi";
 import { LinearGradient } from "expo-linear-gradient";
+import IconButton from "../components/ui/IconButton";
+import ExterAuthIcons from "../components/ExternelAuth";
 
-const HomePage = () => {
+const HomePage = ({ navigation }: { navigation: any }) => {
+  const LoginNavigation = () => {
+    navigation.navigate("LogIn");
+  };
+  const SignUpNavigation = () => [
+    navigation.navigate('SignUp')
+  ]
   return (
-    <View style={styles.container}>
-      <LinearGradient
-        colors={[
-          "rgba(255, 106, 25, 1)",
-          "rgba(179, 62, 0, 1)",
-          "rgba(179, 0, 44, 1)",
-        ]}
-        style={styles.background}
-      />
-      <View
-        style={{
-          flexDirection: "row",
-          width: "100%",
-          justifyContent: "space-between",
-        }}
-      >
-        <View style={{ marginTop: "10%" }}>
+    <LinearGradient
+      colors={[
+        "rgba(255, 106, 25, 1)",
+        "rgba(179, 62, 0, 1)",
+        "rgba(179, 0, 44, 1)",
+      ]}
+      style={styles.container}
+    >
+      <View style={[styles.header, {flexDirection: 'row', justifyContent: 'space-between', marginTop: '20%'}]}>
+        <View>
           <Text style={styles.title}>Tasker</Text>
-          <Text style={[styles.subTitle, { fontSize: 14 }]}>
-            Get Things Done By Us...
+          <Text style={styles.subTitle}>Get Things Done By Us...</Text>
+        </View>
+        <Image source={require('../assets/item1.png')} />
+      </View>
+
+      <View style={styles.authContainer}>
+        <View style={styles.Buttons}>
+          <ButtonUi backgroundColor="white" color="white" onPress={LoginNavigation}>
+            Log in
+          </ButtonUi>
+          <ButtonUi fill onPress={SignUpNavigation} backgroundColor="white" color="#6e381b">
+            Sign up
+          </ButtonUi>
+          <Text style={styles.comment}>or continue with</Text>
+        </View>
+
+        {/* Google or faceicon login */}
+        <ExterAuthIcons />
+        <View style={styles.terms}>
+          <Text style={styles.FootersubTitle}>
+            By signin up, I agree to Tasker’s{" "}
+            <Text style={{ textDecorationLine: "underline" }}>
+              Terms & Conditions
+            </Text>
+            , & Community Guildelines. Privacy Policy.
           </Text>
         </View>
-        <Image source={require("../assets/item1.png")} />
       </View>
-
-      <View style={styles.button}>
-        <ButtonUi color="white" backgroundColor="white" onPress={() => {}}>
-          Log in
-        </ButtonUi>
-        <ButtonUi
-          fill
-          color="#FF6A19"
-          backgroundColor="white"
-          onPress={() => {}}
-        >
-          Sign Up
-        </ButtonUi>
-        <Text style={[styles.subTitle, { fontSize: 16, marginTop: "3%" }]}>
-          or continue with
-        </Text>
-        {/* Icons */}
-        <Text style={{ color: "white" }}>Icons</Text>
-        <Text style={[styles.subTitle, { fontSize: 13, paddingTop: 8 }]}>
-          By signin up, I agree to Tasker’s Terms & Conditions, & Community
-          Guildelines. Privacy Policy.
-        </Text>
-      </View>
-    </View>
+    </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingLeft: "10%",
-    paddingTop: "37%",
-    justifyContent: "space-between",
+  header: {
+    flex: 6 / 12,
+    justifyContent: 'center'
   },
   background: {
     position: "absolute",
@@ -77,11 +75,36 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     color: "white",
+  },
+  FootersubTitle: {
+    textAlign: 'center'
+    , color: "white",
+  }
+  ,
+  container: {
+    backgroundColor: "#FF6A19",
+
+    paddingLeft: 30,
+    paddingVertical: 40,
+    flex: 1,
+  },
+  authContainer: {
+    flex: 1,
+    justifyContent: "flex-end",
+    paddingRight: 30,
+  },
+  Buttons: {
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 4 / 12,
+  },
+  comment: {
+    marginTop: 10,
+    color: "white",
     textAlign: "center",
   },
-  button: {
-    alignItems: "center",
-    paddingRight: "10%",
+  terms: {
+    marginTop: 20,
   },
 });
 
