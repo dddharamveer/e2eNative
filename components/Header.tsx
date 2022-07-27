@@ -16,11 +16,11 @@ const navigation = useNavigation()
     return (
       <View style={styles.container}>
         <IconButton
-          name="arrow-back-outline"
+          name="arrow-left"
           size={24}
-          color="black"
+          color="white"
           onPress={goBack}
-          iconColor="white"
+          iconColor="black"
         />
       </View>
     );
@@ -29,9 +29,7 @@ const navigation = useNavigation()
 export const Title=({children})=>{
 return (
   <View>
-  <View style={styles.logo}>
- 
-  </View>
+  
     <Text style={styles.title}>{children}</Text>
   </View>
 );
@@ -39,9 +37,9 @@ return (
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: "60%",
-    marginBottom: "20%",
-    marginLeft: 10,
+ 
+  
+  marginBottom:10
   },
   title: {
     

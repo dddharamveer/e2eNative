@@ -1,5 +1,6 @@
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Colors } from "../../contents/Colors";
 
 type button = {
   backgroundColor: string;
@@ -17,7 +18,7 @@ const ButtonUi = ({
 }: React.PropsWithChildren<button>) => {
   return (
     <Pressable
-      android_ripple={{ color: "#cb646493" }}
+      android_ripple={{ color: Colors.Primary }}
       onPress={onPress}
       style={[
         styles.Button,

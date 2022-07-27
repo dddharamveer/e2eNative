@@ -8,20 +8,22 @@ const SignUp=()=>{
   const screenHeight = Dimensions.get('screen').height;
   const windowHeight = Dimensions.get('window').height;
   const navbarHeight = screenHeight - windowHeight + StatusBar.currentHeight;
-console.log(navbarHeight);  
+console.log(navbarHeight*2);  
     return (
       <KeyboardAwareScrollView
-        behavior="padding"
-        contentContainerStyle={{ height: windowHeight - navbarHeight * 2 }}>
-        <Auth type="Sign Up"/>
+ scrollEnabled={false}
+ keyboard
+        styles={styles.container}
+        contentContainerStyle={{ height: windowHeight -( navbarHeight)+30, 
+    backgroundColor:'white',}}>
+        <Auth type="Sign Up" size={3}/>
       </KeyboardAwareScrollView>
     );
 }
 
 const styles = StyleSheet.create({
 container:{
-    flex:1,
-    backgroundColor:'white',
+ backgroundColor:"white"
 }
 })
 export default SignUp

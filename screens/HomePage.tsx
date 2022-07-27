@@ -5,6 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import IconButton from "../components/ui/IconButton";
 import ExterAuthIcons from "../components/ExternelAuth";
 import { Colors } from "../contents/Colors";
+import { fonts } from "../contents/fonts";
 
 const HomePage = ({ navigation }: { navigation: any }) => {
   const LoginNavigation = () => {
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 48,
     color: "black",
-    fontFamily: "Rubik_300Light",
+    fontFamily: fonts.main,
     textAlign: "center",
   },
   logoView: {
@@ -88,30 +89,25 @@ const styles = StyleSheet.create({
     color: "black",
   },
   authContainer: {
-    marginTop:"15%",
-    justifyContent:'space-between',
+    marginTop: "15%",
+    justifyContent: "space-between",
     flex: 1,
     width: "100%",
-
   },
 
   Buttons: {
-   flex:10/12,
+    flex: 10 / 12,
     justifyContent: "space-around",
   },
 
   comment: {
-    fontFamily: "Rubik_300Light",
-    marginTop:"10%",
+    fontFamily:fonts.main,
+    marginTop: "10%",
     color: "black",
     textAlign: "center",
   },
-authLogo:{
-
-},
-  terms: {
-
-  },
+  authLogo: {},
+  terms: {},
   FootersubTitle: {
     textAlign: "center",
     color: "black",

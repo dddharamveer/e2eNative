@@ -61,7 +61,7 @@ export default function App() {
               headerShadowVisible: false,
               headerBackVisible: false,
               headerLeft: () => (<BackButton />),
-             
+
               headerBackButtonMenuEnabled: false
 
 
