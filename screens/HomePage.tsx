@@ -13,99 +13,85 @@ const HomePage = ({ navigation }: { navigation: any }) => {
     navigation.navigate('SignUp')
   ]
   return (
-    <LinearGradient
-      colors={[
-        "rgba(255, 106, 25, 1)",
-        "rgba(179, 62, 0, 1)",
-        "rgba(179, 0, 44, 1)",
-      ]}
-      style={styles.container}
-    >
-      <View style={[styles.header, {flexDirection: 'row', justifyContent: 'space-between', marginTop: '20%'}]}>
-        <View>
-          <Text style={styles.title}>Tasker</Text>
-          <Text style={styles.subTitle}>Get Things Done By Us...</Text>
-        </View>
-        <Image source={require('../assets/item1.png')} />
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Tasker</Text>
+        <Text style={styles.subTitle}>Get Things Done By Us...</Text>
       </View>
-
       <View style={styles.authContainer}>
-        <View style={styles.Buttons}>
-          <ButtonUi backgroundColor="white" color="white" onPress={LoginNavigation}>
+      <View style={styles.Buttons}>
+                  <ButtonUi backgroundColor="#6e381b" color="black" onPress={LoginNavigation}>
             Log in
           </ButtonUi>
-          <ButtonUi fill onPress={SignUpNavigation} backgroundColor="white" color="#6e381b">
+          <ButtonUi fill onPress={SignUpNavigation} backgroundColor="#6e381b" color="white">
             Sign up
           </ButtonUi>
-          <Text style={styles.comment}>or continue with</Text>
+                  <Text style={styles.comment}>or continue with</Text>
+          </View>
+        <View style={styles.logo}>
+          <ExterAuthIcons />
         </View>
 
-        {/* Google or faceicon login */}
-        <ExterAuthIcons />
         <View style={styles.terms}>
           <Text style={styles.FootersubTitle}>
-            By signin up, I agree to Tasker’s{" "}
-            <Text style={{ textDecorationLine: "underline" }}>
-              Terms & Conditions
+            By signin up, I agree to Tasker’s <Text style={{ textDecorationLine: "underline" }}>Terms & Conditions
             </Text>
             , & Community Guildelines. Privacy Policy.
           </Text>
         </View>
       </View>
-    </LinearGradient>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+  margin:30,
+    
+    flex: 1,
+  },
+
   header: {
-    flex: 6 / 12,
-    justifyContent: 'center'
+    flex: 1,
+    justifyContent: "center",
   },
-  background: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: -1,
-  },
+
   title: {
     fontSize: 48,
-    color: "white",
+    color: "black",
   },
   subTitle: {
-    color: "white",
-  },
-  FootersubTitle: {
-    textAlign: 'center'
-    , color: "white",
-  }
-  ,
-  container: {
-    backgroundColor: "#FF6A19",
-
-    paddingLeft: 30,
-    paddingVertical: 40,
-    flex: 1,
+    color: "black",
   },
   authContainer: {
     flex: 1,
-    justifyContent: "flex-end",
-    paddingRight: 30,
+    width: "100%",
+justifyContent:'flex-end'
+ 
+    
   },
-  Buttons: {
-    justifyContent: "center",
-    alignItems: "center",
-    flex: 4 / 12,
+
+  Buttons:{
+    flex:9/12,
+    justifyContent:'space-around'
   },
+
   comment: {
-    marginTop: 10,
-    color: "white",
+    marginVertical:10,
+    color: "black",
     textAlign: "center",
   },
+
+  logo: { marginVertical:15 },
   terms: {
-    marginTop: 20,
+   
+   marginVertical:10
   },
+  FootersubTitle: {
+    textAlign: "center",
+    color: "black",
+  },
+
 });
 
 export default HomePage;

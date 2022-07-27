@@ -7,11 +7,20 @@ type IconButton = {
   color: string,
   size: number,
   iconColor: string,
-  onPress: () => {}
+  onPress: () => void
 }
-const IconButton: React.FC<IconButton> = ({ name, color, size, iconColor, onPress }) => {
+const IconButton: React.FC<IconButton> = ({
+  name,
+  color,
+  size,
+  iconColor,
+  onPress,
+}) => {
   return (
-    <Pressable android_ripple={{ color: '#8c1818' }} style={[styles.container, { backgroundColor: color }]} onPress={onPress}>
+    <Pressable
+      android_ripple={{ color: "#8c1818" }}
+      style={[styles.container, { backgroundColor: color }]}
+      onPress={onPress}>
       <Ionicons style={styles.icon} name={name} size={size} color={iconColor} />
     </Pressable>
   );

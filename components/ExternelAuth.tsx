@@ -14,9 +14,9 @@ export default ExterAuthIcons
 const styles = StyleSheet.create({
   logo: {
     flexDirection: "row",
-    flex: 2 / 12,
+
     justifyContent: "space-around",
-    margin: "2%",
+
     paddingHorizontal: 55,
   },
 });

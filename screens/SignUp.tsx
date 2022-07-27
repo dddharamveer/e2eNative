@@ -1,24 +1,21 @@
-import { View,Text, StyleSheet } from "react-native"
+import { View,Text, StyleSheet,Dimensions,StatusBar } from "react-native"
 import{ LinearGradient }from "expo-linear-gradient"
 import Auth from "../components/auth"
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 
 const SignUp=()=>{
-    return(
-    <View style={styles.container}>
-   
-        <Auth/>
-        <View style={styles.terms}>
-          <Text style={styles.subTitle}>
-            By signin up, I agree to Tasker’s{" "}
-            <Text style={{ textDecorationLine: "underline" }}>
-              Terms & Conditions
-            </Text>
-            , & Community Guildelines. Privacy Policy.
-          </Text>
-        </View>
-    </View>
-    )
+  const screenHeight = Dimensions.get('screen').height;
+  const windowHeight = Dimensions.get('window').height;
+  const navbarHeight = screenHeight - windowHeight + StatusBar.currentHeight;
+console.log(navbarHeight);  
+    return (
+      <KeyboardAwareScrollView
+        behavior="padding"
+        contentContainerStyle={{ height: windowHeight - navbarHeight * 2 }}>
+        <Auth type="Sign Up"/>
+      </KeyboardAwareScrollView>
+    );
 }
 
 const styles = StyleSheet.create({
