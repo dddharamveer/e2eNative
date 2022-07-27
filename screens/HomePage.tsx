@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import ButtonUi from "../components/ui/ButtonsUi";
@@ -7,7 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import IconButton from "../components/ui/IconButton";
 import ExterAuthIcons from "../components/ExternelAuth";
 
-const HomePage = ({ navigation }) => {
+const HomePage = ({ navigation }: { navigation: any }) => {
   const LoginNavigation = () => {
     navigation.navigate("LogIn");
   };
@@ -23,7 +21,7 @@ const HomePage = ({ navigation }) => {
       ]}
       style={styles.container}
     >
-      <View style={[styles.header, {flexDirection: 'row', justifyContent: 'space-between', marginTop: '10%'}]}>
+      <View style={[styles.header, {flexDirection: 'row', justifyContent: 'space-between', marginTop: '20%'}]}>
         <View>
           <Text style={styles.title}>Tasker</Text>
           <Text style={styles.subTitle}>Get Things Done By Us...</Text>
@@ -63,13 +61,20 @@ const styles = StyleSheet.create({
     flex: 6 / 12,
     justifyContent: 'center'
   },
+  background: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: -1,
+  },
   title: {
     fontSize: 48,
     color: "white",
   },
   subTitle: {
     color: "white",
-
   },
   FootersubTitle: {
     textAlign: 'center'
