@@ -1,54 +1,97 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import ButtonUi from "../components/ui/ButtonsUi";
+import { LinearGradient } from "expo-linear-gradient";
+import IconButton from "../components/ui/IconButton";
+import ExterAuthIcons from "../components/ExternelAuth";
 
-
-const HomePage = () => {
+const HomePage = ({ navigation }: { navigation: any }) => {
+  const LoginNavigation = () => {
+    navigation.navigate("LogIn");
+  };
+  const SignUpNavigation = () => [
+    navigation.navigate('SignUp')
+  ]
   return (
     <View style={styles.container}>
-      <View>
+      <View style={styles.header}>
         <Text style={styles.title}>Tasker</Text>
         <Text style={styles.subTitle}>Get Things Done By Us...</Text>
       </View>
+      <View style={styles.authContainer}>
       <View style={styles.Buttons}>
-        <ButtonUi backgroundColor="black" color="black">Log in</ButtonUi>
-        <ButtonUi fill backgroundColor="black" color="white">Sign up</ButtonUi>
-        <Text style={[styles.subTitle, { fontSize: 16 }]}>
-          or continue with
-        </Text>
-        {/* Icons */}
-        <Text style={{ color: "white" }}>Icons</Text>
-        <Text style={[styles.subTitle, { fontSize: 13 }]}>
-          By signin up, I agree to Tasker’s Terms & Conditions, & Community
-          Guildelines. Privacy Policy.
-        </Text>
+                  <ButtonUi backgroundColor="#6e381b" color="black" onPress={LoginNavigation}>
+            Log in
+          </ButtonUi>
+          <ButtonUi fill onPress={SignUpNavigation} backgroundColor="#6e381b" color="white">
+            Sign up
+          </ButtonUi>
+                  <Text style={styles.comment}>or continue with</Text>
+          </View>
+        <View style={styles.logo}>
+          <ExterAuthIcons />
+        </View>
+
+        <View style={styles.terms}>
+          <Text style={styles.FootersubTitle}>
+            By signin up, I agree to Tasker’s <Text style={{ textDecorationLine: "underline" }}>Terms & Conditions
+            </Text>
+            , & Community Guildelines. Privacy Policy.
+          </Text>
+        </View>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+  margin:30,
+    
+    flex: 1,
+  },
+
+  header: {
+    flex: 1,
+    justifyContent: "center",
+  },
 
   title: {
     fontSize: 48,
-    color: "white",
+    color: "black",
   },
   subTitle: {
-    color: "white",
+    color: "black",
+  },
+  authContainer: {
+    flex: 1,
+    width: "100%",
+justifyContent:'flex-end'
+ 
+    
   },
 
-  container: {
-    backgroundColor: "#FF6A19",
-    marginTop: 50,
-    padding: 20,
-    flex: 1,
-    justifyContent: 'space-between'
+  Buttons:{
+    flex:9/12,
+    justifyContent:'space-around'
   },
-  Buttons: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 4 / 12
-  }
+
+  comment: {
+    marginVertical:10,
+    color: "black",
+    textAlign: "center",
+  },
+
+  logo: { marginVertical:15 },
+  terms: {
+   
+   marginVertical:10
+  },
+  FootersubTitle: {
+    textAlign: "center",
+    color: "black",
+  },
+
 });
 
 export default HomePage;
