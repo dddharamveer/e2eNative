@@ -1,6 +1,6 @@
 import { View, TextInput, StyleSheet, Text } from "react-native"
 
-const TextInputUi = ({name,password}) => {
+const TextInputUi = ({ name,password }: { name: string, password?: boolean }) => {
     return (
       <View style={styles.container}>
         <TextInput
