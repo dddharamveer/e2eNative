@@ -1,8 +1,8 @@
 import { StyleSheet, View, Text, Image, Pressable } from "react-native";
 import TextInputUi from "./ui/TextInput";
 import ButtonUi from "./ui/ButtonsUi";
-import { Colors } from "../contents/Colors";
-import { fonts } from "../contents/fonts";
+import { Colors } from "../constants/Colors";
+import { fonts } from "../constants/fonts";
 
 const Auth = ({ type, size }: { type: string; size: number }) => {
     return (
