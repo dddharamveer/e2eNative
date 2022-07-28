@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   },
 
   Buttons: {
-    flex: 10 / 12,
+    flex: 8 / 12,
     justifyContent: "space-around",
   },
 
