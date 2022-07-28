@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import TextInputUi from "./ui/TextInput";
 import ButtonUi from "./ui/ButtonsUi";
+import colors from "../Constants/colors";
 
 const Auth = ({type}) => {
   return (
@@ -27,7 +28,7 @@ const Auth = ({type}) => {
         <ButtonUi
           fill
           color="white"
-          backgroundColor="#6e381b"
+          backgroundColor={colors.primary500}
           onPress={function (): void {
             throw new Error("Function not implemented.");
           }}>

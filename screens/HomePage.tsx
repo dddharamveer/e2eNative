@@ -4,6 +4,7 @@ import ButtonUi from "../components/ui/ButtonsUi";
 import { LinearGradient } from "expo-linear-gradient";
 import IconButton from "../components/ui/IconButton";
 import ExterAuthIcons from "../components/ExternelAuth";
+import colors from "../Constants/colors"
 
 const HomePage = ({ navigation }: { navigation: any }) => {
   const LoginNavigation = () => {
@@ -20,10 +21,10 @@ const HomePage = ({ navigation }: { navigation: any }) => {
       </View>
       <View style={styles.authContainer}>
       <View style={styles.Buttons}>
-                  <ButtonUi backgroundColor="#6e381b" color="black" onPress={LoginNavigation}>
+                  <ButtonUi backgroundColor={colors.primary500} color="black" onPress={LoginNavigation}>
             Log in
           </ButtonUi>
-          <ButtonUi fill onPress={SignUpNavigation} backgroundColor="#6e381b" color="white">
+          <ButtonUi fill onPress={SignUpNavigation} backgroundColor={colors.primary500} color="white">
             Sign up
           </ButtonUi>
                   <Text style={styles.comment}>or continue with</Text>
