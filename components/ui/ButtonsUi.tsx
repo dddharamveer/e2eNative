@@ -1,6 +1,6 @@
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { Colors } from "../../contents/Colors";
+import { Colors } from "../../constants/Colors";
 
 type button = {
   backgroundColor: string;

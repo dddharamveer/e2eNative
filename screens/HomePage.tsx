@@ -4,8 +4,8 @@ import ButtonUi from "../components/ui/ButtonsUi";
 import { LinearGradient } from "expo-linear-gradient";
 import IconButton from "../components/ui/IconButton";
 import ExterAuthIcons from "../components/ExternelAuth";
-import { Colors } from "../contents/Colors";
-import { fonts } from "../contents/fonts";
+import { Colors } from "../constants/Colors";
+import { fonts } from "../constants/fonts";
 
 const HomePage = ({ navigation }: { navigation: any }) => {
   const LoginNavigation = () => {

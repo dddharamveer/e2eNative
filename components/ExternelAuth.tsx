@@ -1,5 +1,5 @@
 import { View, StyleSheet } from "react-native";
-import { Colors } from "../contents/Colors";
+import { Colors } from "../constants/Colors";
 import IconButton from "./ui/IconButton";
 
 const ExterAuthIcons = () => {

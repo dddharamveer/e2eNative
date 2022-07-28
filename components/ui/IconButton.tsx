@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import React from "react";
-import { Colors } from "../../contents/Colors";
+import { Colors } from "../../constants/Colors";
 
 type IconButton = {
     name: any;
