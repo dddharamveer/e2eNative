@@ -1,12 +1,13 @@
 import { View, StyleSheet } from "react-native";
+import { Colors } from "../contents/Colors";
 import IconButton from "./ui/IconButton";
 
 const ExterAuthIcons = () => {
   return (
     <View style={styles.logo}>
-      <IconButton name="logo-facebook" color="white" size={24} />
-      <IconButton name="logo-google" color="white" size={24} />
-      <IconButton name="logo-apple" color="white" size={24} />
+      <IconButton name="facebook" iconColor={Colors.Primary} color="white" size={24} />
+      <IconButton name="google" iconColor={Colors.Primary} color="white" size={24} />
+      <IconButton name="apple" iconColor={Colors.Primary} color="white" size={24} />
     </View>
   );
 };

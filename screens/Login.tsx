@@ -11,16 +11,16 @@ const Login=()=>{
 console.log(navbarHeight);  
     return (
       <KeyboardAwareScrollView
-        behavior="padding"
-        contentContainerStyle={{ height: windowHeight - navbarHeight * 2 }}>
-        <Auth type="Log in"/>
+        style={styles.container}
+        contentContainerStyle={{ height: windowHeight - navbarHeight * 2 ,backgroundColor:"white"}}>
+        <Auth type="Log in" size={4.3}/>
       </KeyboardAwareScrollView>
     );
 }
 
 const styles = StyleSheet.create({
 container:{
-    flex:1,
+
     backgroundColor:'white',
 }
 })

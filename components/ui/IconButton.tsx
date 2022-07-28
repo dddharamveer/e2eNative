@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import {FontAwesome5 } from "@expo/vector-icons";
 import React from "react";
+import { Colors } from "../../contents/Colors";
 
 type IconButton = {
   name: any,
@@ -17,11 +18,12 @@ const IconButton: React.FC<IconButton> = ({
   onPress,
 }) => {
   return (
+  
     <Pressable
-      android_ripple={{ color: "#8c1818" }}
-      style={[styles.container, { backgroundColor: color }]}
+
+      style={({pressed})=>[styles.container, { backgroundColor: color },pressed && styles.pressed]}
       onPress={onPress}>
-      <Ionicons style={styles.icon} name={name} size={size} color={iconColor} />
+      <FontAwesome5  name={name} size={size} color={iconColor} />
     </Pressable>
   );
 };
@@ -35,6 +37,10 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     borderRadius: 50 / 2,
+    elevation:4
   },
-  icon: {},
+  pressed:{
+    opacity:0.7
+  }
+
 });
