@@ -1,28 +1,27 @@
-import { View, Text, StyleSheet, Dimensions, StatusBar } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import { StyleSheet, Dimensions, StatusBar } from "react-native";
 import Auth from "../components/auth";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
+import { LoginWithEmail } from "../constants/firebase/auth";
 const Login = () => {
-    const screenHeight = Dimensions.get("screen").height;
-    const windowHeight = Dimensions.get("window").height;
-    const navbarHeight = screenHeight - windowHeight + StatusBar.currentHeight!;
-    console.log(navbarHeight);
-    return (
-        <KeyboardAwareScrollView
-            style={styles.container}
-            contentContainerStyle={{
-                height: windowHeight - navbarHeight * 2,
-                backgroundColor: "white",
-            }}>
-            <Auth type="Log in" size={4.3} />
-        </KeyboardAwareScrollView>
-    );
+  async function LoginHandler(email, password) {
+    const user = await LoginWithEmail(email, password);
+  }
+
+  return (
+    <KeyboardAwareScrollView
+      style={styles.container}
+      contentContainerStyle={{
+        backgroundColor: "white",
+      }}>
+      <Auth type="Log in" size={4.3} auth={LoginHandler} />
+    </KeyboardAwareScrollView>
+  );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: "white",
-    },
+  container: {
+    backgroundColor: "white",
+  },
 });
 export default Login;
