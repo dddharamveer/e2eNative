@@ -4,6 +4,7 @@ import React from "react";
 import { Colors } from "../../constants/Colors";
 
 type IconButton = {
+
     name: any;
     color: string;
     size: number;
@@ -18,23 +19,25 @@ const IconButton: React.FC<IconButton> = ({
     iconColor,
     elevation,
     onPress,
+
 }) => {
-    return (
-        <Pressable
-            style={({ pressed }) => [
-                styles.container,
-                { backgroundColor: color },
-                pressed && styles.pressed,
-            ]}
-            onPress={onPress}>
-            <FontAwesome5 name={name} size={size} color={iconColor} />
-        </Pressable>
-    );
+  return (
+    <Pressable
+      style={({ pressed }) => [
+        styles.container,
+        { backgroundColor: color },
+        pressed && styles.pressed,
+      ]}
+      onPress={onPress}>
+      <FontAwesome5 name={name} size={size} color={iconColor} />
+    </Pressable>
+  );
 };
 
 export default IconButton;
 
 const styles = StyleSheet.create({
+
     container: {
         alignItems: "center",
         justifyContent: "center",
@@ -45,4 +48,5 @@ const styles = StyleSheet.create({
     pressed: {
         opacity: 0.7,
     },
+
 });

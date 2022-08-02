@@ -1,23 +1,22 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
 import ButtonUi from "../components/ui/ButtonsUi";
 import { LinearGradient } from "expo-linear-gradient";
 import IconButton from "../components/ui/IconButton";
 import ExterAuthIcons from "../components/ExternelAuth";
 import { Colors } from "../constants/Colors";
 import { fonts } from "../constants/fonts";
+import Footer from "../components/footer";
 
 const HomePage = ({ navigation }: { navigation: any }) => {
+  const height = Dimensions.get("screen").height;
   const LoginNavigation = () => {
     navigation.navigate("LogIn");
   };
-  const SignUpNavigation = () => [
-    navigation.navigate('SignUp')
-  ]
+  const SignUpNavigation = () => [navigation.navigate("SignUp")];
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Tasker</Text>
         <View style={styles.logoView}>
           <Image
             resizeMode="contain"
@@ -43,18 +42,10 @@ const HomePage = ({ navigation }: { navigation: any }) => {
           </ButtonUi>
           <Text style={styles.comment}>or continue with</Text>
         </View>
-<View style={styles.authLogo}>
-  <ExterAuthIcons />
-</View>
-        <View style={styles.terms}>
-          <Text style={styles.FootersubTitle}>
-            By signin up, I agree to Tasker’s{" "}
-            <Text style={{ textDecorationLine: "underline" }}>
-              Terms & Conditions
-            </Text>
-            , & Community Guildelines. Privacy Policy.
-          </Text>
+        <View style={styles.authLogo}>
+          <ExterAuthIcons />
         </View>
+        <Footer />
       </View>
     </View>
   );
@@ -89,28 +80,24 @@ const styles = StyleSheet.create({
     color: "black",
   },
   authContainer: {
-    marginTop: "15%",
-    justifyContent: "space-between",
+    marginTop: "10%",
+
     flex: 1,
     width: "100%",
   },
 
   Buttons: {
-    flex: 8 / 12,
-    justifyContent: "space-around",
+    justifyContent: "center",
   },
 
   comment: {
-    fontFamily:fonts.main,
-    marginTop: "10%",
+    fontFamily: fonts.main,
+    marginTop: "5%",
     color: "black",
     textAlign: "center",
   },
-  authLogo: {},
-  terms: {},
-  FootersubTitle: {
-    textAlign: "center",
-    color: "black",
+  authLogo: {
+    marginBottom: "10%",
   },
 });
 

@@ -25,8 +25,7 @@ const ButtonUi = ({
         fill
           ? { backgroundColor: backgroundColor, elevation: 3 }
           : { borderWidth: 2, borderColor: backgroundColor },
-      ]}
-    >
+      ]}>
       <View>
         {/* @ts-ignore */}
         <Text style={[styles.text, color && { color: color }]}>{children}</Text>
@@ -39,7 +38,7 @@ export default ButtonUi;
 
 const styles = StyleSheet.create({
   Button: {
-    flex: 1,
+    height: "25%",
     width: "100%",
     marginVertical: 5,
 
