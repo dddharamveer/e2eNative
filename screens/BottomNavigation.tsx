@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import IconButton from "../components/ui/IconButton";
 import { Colors } from "../constants/Colors";
+import BrowseTasks from "../components/BrowseTasks";
 
 function HomeScreen() {
     return (
@@ -90,8 +91,8 @@ export default function Haram({ navigation }: { navigation: any }) {
                 }}
             />
             <Tab.Screen
-                name="Search"
-                component={TasksScreen}
+                name="Browse Tasks"
+                component={BrowseTasks}
                 options={{
                     tabBarIcon: ({ color, size }) => {
                         return (
@@ -101,7 +102,7 @@ export default function Haram({ navigation }: { navigation: any }) {
                                 size={22}
                                 color="transparent"
                                 onPress={() => {
-                                    navigation.navigate("Search");
+                                    navigation.navigate("Browse Tasks");
                                 }}
                             />
                         );
