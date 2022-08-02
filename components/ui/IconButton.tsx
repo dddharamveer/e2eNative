@@ -9,12 +9,14 @@ type IconButton = {
     size: number;
     iconColor: string;
     onPress?: () => void;
+    elevation?: number;
 };
 const IconButton: React.FC<IconButton> = ({
     name,
     color,
     size,
     iconColor,
+    elevation,
     onPress,
 }) => {
     return (
@@ -39,7 +41,6 @@ const styles = StyleSheet.create({
         height: 50,
         width: 50,
         borderRadius: 50 / 2,
-        elevation: 4,
     },
     pressed: {
         opacity: 0.7,
