@@ -1,12 +1,54 @@
-import { StyleSheet, View, Text, Image, Pressable } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  Pressable,
+  Alert,
+  Dimensions,
+} from "react-native";
 import TextInputUi from "./ui/TextInput";
 import ButtonUi from "./ui/ButtonsUi";
 import { Colors } from "../constants/Colors";
 import { fonts } from "../constants/fonts";
+import { useState } from "react";
+import { Inter_100Thin } from "@expo-google-fonts/inter";
+import Footer from "./footer";
 
-const Auth = ({ type, size }: { type: string; size: number }) => {
+const Auth = ({ type, size, auth }: { type: string; size: number }) => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  function emailHandler(text) {
+    setEmail(text);
+  }
+
+  function passwordHandler(text) {
+    setPassword(text);
+  }
+  function authHandler() {
+    console.log(email);
+
+    if (email?.trim().length === 0) {
+      Alert.alert("emty email");
+      return;
+    }
+    if (!email?.includes("@") && !email.includes(".com")) {
+      Alert.alert("@ email");
+      return;
+    }
+    if (password?.trim().length === 0) {
+      Alert.alert("pass em");
+      return;
+    }
+    if (password?.length! <= 6 && type === "Sign Up") {
+      Alert.alert("length prob");
+      return;
+    }
+
+    auth(email, password);
+  }
   return (
-    <View style={styles.inner}>
+    <View style={[styles.inner, { height: Dimensions.get("screen").height }]}>
       <View style={styles.logoView}>
         <Image
           resizeMode="contain"
@@ -15,7 +57,7 @@ const Auth = ({ type, size }: { type: string; size: number }) => {
         />
       </View>
 
-      <View style={styles.body}>
+      <View style={[styles.body]}>
         <View style={styles.title}>
           <Text style={styles.titleText}>{type}</Text>
         </View>
@@ -23,24 +65,31 @@ const Auth = ({ type, size }: { type: string; size: number }) => {
           {type === "Sign Up" && (
             <Text style={styles.account}>Create a new account</Text>
           )}
-          <TextInputUi name="Email" />
-          <TextInputUi name="Password" password />
+          <TextInputUi name="Email" onChangeText={emailHandler} />
+          <TextInputUi
+            name="Password"
+            password
+            onChangeText={passwordHandler}
+          />
         </View>
-        <View style={{ flex: size / 8 }}>
-          {type === "Log in" && (
-            <Pressable>
-              <Text style={styles.forgotpasswordText}>Forgot Password?</Text>
-            </Pressable>
-          )}
+        {type === "Log in" && (
+          <Pressable>
+            <Text style={styles.forgotpasswordText}>Forgot Password?</Text>
+          </Pressable>
+        )}
+        <View style={{ height: "42%" }}>
           <ButtonUi
             fill
             color="white"
             backgroundColor={Colors.secondary}
-            onPress={function (): void {
-              throw new Error("Function not implemented.");
-            }}>
+            onPress={authHandler}>
             {type == "Sign Up" ? "Sign Up" : "Log in"}
           </ButtonUi>
+          {type == "Sign Up" && (
+            <View style={styles.footer}>
+              <Footer />
+            </View>
+          )}
         </View>
       </View>
     </View>
@@ -54,13 +103,15 @@ const styles = StyleSheet.create({
   },
   body: {
     padding: 20,
-    flex: 1,
-    elevation: 1,
+
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    borderWidth: 1,
+    borderColor: "#9c9c9cff",
+    borderBottomWidth: 0,
   },
   logoView: {
-    flex: 7 / 12,
+    aspectRatio: 2 / 1,
   },
   logo: {
     width: "100%",
@@ -88,6 +139,10 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     textAlign: "right",
     color: Colors.Primary50,
+  },
+  button: {},
+  footer: {
+    marginTop: "10%",
   },
 });
 

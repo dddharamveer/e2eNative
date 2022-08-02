@@ -4,44 +4,44 @@ import React from "react";
 import { Colors } from "../../constants/Colors";
 
 type IconButton = {
-    name: any;
-    color: string;
-    size: number;
-    iconColor: string;
-    onPress?: () => void;
+  name: any;
+  color: string;
+  size: number;
+  iconColor: string;
+  onPress?: () => void;
 };
 const IconButton: React.FC<IconButton> = ({
-    name,
-    color,
-    size,
-    iconColor,
-    onPress,
+  name,
+  color,
+  size,
+  iconColor,
+  onPress,
 }) => {
-    return (
-        <Pressable
-            style={({ pressed }) => [
-                styles.container,
-                { backgroundColor: color },
-                pressed && styles.pressed,
-            ]}
-            onPress={onPress}>
-            <FontAwesome5 name={name} size={size} color={iconColor} />
-        </Pressable>
-    );
+  return (
+    <Pressable
+      style={({ pressed }) => [
+        styles.container,
+        { backgroundColor: color },
+        pressed && styles.pressed,
+      ]}
+      onPress={onPress}>
+      <FontAwesome5 name={name} size={size} color={iconColor} />
+    </Pressable>
+  );
 };
 
 export default IconButton;
 
 const styles = StyleSheet.create({
-    container: {
-        alignItems: "center",
-        justifyContent: "center",
-        height: 50,
-        width: 50,
-        borderRadius: 50 / 2,
-        elevation: 4,
-    },
-    pressed: {
-        opacity: 0.7,
-    },
+  container: {
+    alignItems: "center",
+    justifyContent: "center",
+    height: 55,
+    width: 55,
+    borderRadius: 55 / 2,
+    elevation: 4,
+  },
+  pressed: {
+    opacity: 0.7,
+  },
 });
