@@ -7,11 +7,11 @@ import {
   Button,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import Auth from "../components/auth";
+import Auth from "../../components/auth";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useEffect } from "react";
-import { createAccountWithPassword } from "../constants/firebase/auth";
-import Footer from "../components/footer";
+import { createAccountWithPassword } from "../../constants/firebase/auth";
+import Footer from "../../components/footer";
 
 const SignUp = () => {
   const screenHeight = Dimensions.get("screen").height;
