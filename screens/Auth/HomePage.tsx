@@ -1,12 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
-import ButtonUi from "../components/ui/ButtonsUi";
+import ButtonUi from "../../components/ui/ButtonsUi";
 import { LinearGradient } from "expo-linear-gradient";
-import IconButton from "../components/ui/IconButton";
-import ExterAuthIcons from "../components/ExternelAuth";
-import { Colors } from "../constants/Colors";
-import { fonts } from "../constants/fonts";
-import Footer from "../components/footer";
+import IconButton from "../../components/ui/IconButton";
+import ExterAuthIcons from "../../components/ExternelAuth";
+import { Colors } from "../../constants/Colors";
+import { fonts } from "../../constants/fonts";
+import Footer from "../../components/footer";
 
 const HomePage = ({ navigation }: { navigation: any }) => {
     const height = Dimensions.get("screen").height;
@@ -21,7 +21,7 @@ const HomePage = ({ navigation }: { navigation: any }) => {
                     <Image
                         resizeMode="contain"
                         style={styles.logo}
-                        source={require("../assets/image.png")}
+                        source={require("../../assets/image.png")}
                     />
                 </View>
             </View>
