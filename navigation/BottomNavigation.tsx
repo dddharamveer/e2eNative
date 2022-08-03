@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useEffect, useContext } from "react";
 import { Text, View, Button } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { signOut } from "firebase/auth/react-native";
@@ -6,6 +6,7 @@ import { auth } from "../constants/firebase/auth";
 import IconButton from "../components/ui/IconButton";
 import { Colors } from "../constants/Colors";
 import BrowseTasks from "../components/BrowseTasks";
+import { AuthContext } from "../store/authContext";
 
 function HomeScreen() {
   return (
@@ -29,9 +30,11 @@ function CategoryScreen() {
   );
 }
 function AccountScreen() {
+  const { logout } = useContext(AuthContext);
   const login = () => {
     signOut(auth)
       .then(() => {
+        logout();
         console.log("done");
       })
       .catch((err) => {
