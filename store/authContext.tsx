@@ -2,7 +2,12 @@ import { onAuthStateChanged } from "firebase/auth/react-native";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../constants/firebase/auth";
 
-export const AuthContext = createContext({
+type AuthContextType = {
+    user: any;
+    logout: () => void;
+}
+
+export const AuthContext = createContext<AuthContextType>({
   user: null,
   logout: () => {},
 });
