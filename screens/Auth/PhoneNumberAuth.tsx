@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Button } from "react-native";
 import React from "react";
 import { signOut } from "firebase/auth/react-native";
-import { auth } from "../constants/firebase/auth";
+import { auth } from "../../constants/firebase/auth";
 
 const PhoneNumberAuth = () => {
   const login = () => {

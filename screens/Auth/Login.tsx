@@ -1,8 +1,8 @@
 import { StyleSheet, Dimensions, StatusBar } from "react-native";
-import Auth from "../components/auth";
+import Auth from "../../components/auth";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import { LoginWithEmail } from "../constants/firebase/auth";
+import { LoginWithEmail } from "../../constants/firebase/auth";
 const Login = () => {
   async function LoginHandler(email, password) {
     const user = await LoginWithEmail(email, password);

@@ -1,8 +1,8 @@
-import HomePage from "../screens/HomePage";
-import Login from "../screens/Login";
+import HomePage from "../screens/Auth/HomePage";
+import Login from "../screens/Auth/Login";
 import { BackButton, Title } from "../components/Header";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import SignUp from "../screens/SignUp";
+import SignUp from "../screens/Auth/SignUp";
 const stack = createNativeStackNavigator();
 
 function Auth() {

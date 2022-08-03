@@ -15,14 +15,14 @@ import { useState } from "react";
 import { Inter_100Thin } from "@expo-google-fonts/inter";
 import Footer from "./footer";
 
-const Auth = ({ type, size, auth }: { type: string; size: number }) => {
+const Auth = ({ type, size, auth }: { type: string; size: number, auth: (email: string, password: string) => {} }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  function emailHandler(text) {
+  function emailHandler(text: string) {
     setEmail(text);
   }
 
-  function passwordHandler(text) {
+  function passwordHandler(text: string) {
     setPassword(text);
   }
   function authHandler() {
