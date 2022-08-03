@@ -1,38 +1,31 @@
-import { createContext, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth/react-native";
+import { createContext, useEffect, useState } from "react";
+import { auth } from "../constants/firebase/auth";
 
-type AuthContextType = {
-    isAuthenticated: boolean;
-    user: any;
-    setUser: (user: any) => void;
-};
-
-export const AuthContext = createContext<AuthContextType>({
-    isAuthenticated: false,
-    user: null,
-    setUser: () => {},
+export const AuthContext = createContext({
+  user: null,
+  logout: () => {},
 });
 
 const AuthProvider: React.FC = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<any>(null);
 
-    const setAuthContext = (user) => {
-        console.log("siuhfuih");
+  const logout = () => {
+    setUser(null);
+  };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
 
-        setIsAuthenticated(!isAuthenticated);
-        setUser(user);
-    };
+    return unsubscribe;
+  }, []);
 
-    return (
-        <AuthContext.Provider
-            value={{
-                isAuthenticated: isAuthenticated,
-                user: user,
-                setUser: setAuthContext,
-            }}>
-            {children}
-        </AuthContext.Provider>
-    );
+  const value = {
+    user,
+    logout,
+  };
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;

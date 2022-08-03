@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useContext, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
@@ -10,23 +10,14 @@ import { onAuthStateChanged } from "firebase/auth/react-native";
 import Auth from "../navigation/Auth";
 import Main from "../navigation/Main";
 const NavContainer = () => {
-    const { isAuthenticated, user, setUser } = useContext(AuthContext);
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            setUser(user);
-        } else {
-            setUser(null);
-        }
-    });
+  const { user } = useContext(AuthContext);
 
-    let content = <Auth />;
+  let content = <Auth />;
 
-    if (isAuthenticated) {
-        content = <Main />;
-    }
-    return <NavigationContainer>{content}</NavigationContainer>;
+  if (user) {
+    content = <Main />;
+  }
+  return <NavigationContainer>{content}</NavigationContainer>;
 };
 
 export default NavContainer;
-
-const styles = StyleSheet.create({});
