@@ -7,6 +7,10 @@ import IconButton from "../components/ui/IconButton";
 import { Colors } from "../constants/Colors";
 import BrowseTasks from "../components/BrowseTasks";
 import { AuthContext } from "../store/authContext";
+
+import Account from "../screens/Account";
+
+
 import HeaderHome from "./HeaderHome";
 import { fonts } from "../constants/fonts";
 import ButtonUi from "../components/ui/ButtonsUi";
@@ -14,6 +18,7 @@ import HomePage from "../screens/Main/HomePage";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BackButton } from "../components/Header";
 import { FontAwesome5 } from "@expo/vector-icons";
+
 function TasksScreen() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -152,7 +157,7 @@ export default function Main() {
       />
       <Tab.Screen
         name="Account"
-        component={AccountScreen}
+        component={Account}
         options={({ navigation }) => ({
           tabBarIcon: ({ color, size }) => {
             return (
