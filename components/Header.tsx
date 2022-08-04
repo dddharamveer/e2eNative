@@ -22,7 +22,7 @@ export const BackButton = () => {
     );
 };
 
-export const Title = ({ children }) => {
+export const Title: React.FC = ({ children }) => {
     return (
         <View>
             <Text style={styles.title}>{children}</Text>
