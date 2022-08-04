@@ -10,14 +10,13 @@ import { AuthContext } from "../store/authContext";
 
 import Account from "../screens/Account";
 
-
 import HeaderHome from "./HeaderHome";
 import { fonts } from "../constants/fonts";
 import ButtonUi from "../components/ui/ButtonsUi";
 import HomePage from "../screens/Main/HomePage";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BackButton } from "../components/Header";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesome5, Octicons } from "@expo/vector-icons";
 
 function TasksScreen() {
   return (
@@ -81,6 +80,9 @@ export default function Main() {
         name="Home"
         component={HomePage}
         options={{
+          tabBarIcon: ({ color, size }) => {
+            return <FontAwesome5 name="home" size={size} color={color} />;
+          },
           header: () => {
             return (
               <SafeAreaView
@@ -92,7 +94,7 @@ export default function Main() {
                 <Text style={{ fontFamily: fonts.bold, fontSize: 25 }}>
                   Hi, Bharat Adya
                 </Text>
-                <FontAwesome5 name="bell" size={30} color={Colors.secondary} />
+                <Octicons name="bell-fill" size={30} color={Colors.secondary} />
               </SafeAreaView>
             );
           },
@@ -101,41 +103,22 @@ export default function Main() {
       <Tab.Screen
         name="Tasks"
         component={TasksScreen}
-        options={({ navigation }) => ({
+        options={{
           tabBarIcon: ({ color, size }) => {
-            return (
-              <IconButton
-                name="comments"
-                iconColor={color}
-                size={22}
-                color="transparent"
-                onPress={() => {
-                  navigation.navigate("Tasks");
-                }}
-              />
-            );
+            return <FontAwesome5 name="comments" size={size} color={color} />;
           },
-        })}
+        }}
       />
       <Tab.Screen
         name="Browse Tasks"
         component={BrowseTasks}
-        options={({ navigation }) => ({
+        options={{
           tabBarIcon: ({ color, size }) => {
-            return (
-              <IconButton
-                name="search"
-                iconColor={color}
-                size={22}
-                color="transparent"
-                onPress={() => {
-                  navigation.navigate("Browse Tasks");
-                }}
-              />
-            );
+            return <FontAwesome5 name="search" size={size} color={color} />;
           },
-        })}
+        }}
       />
+
       <Tab.Screen
         name="Categories"
         component={CategoryScreen}

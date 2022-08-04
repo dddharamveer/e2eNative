@@ -4,6 +4,7 @@ import SortDropdown from "../../components/ui/SortDropdown";
 
 import IconButton from "../../components/ui/IconButton";
 import { FontAwesome5 } from "@expo/vector-icons";
+import BrowseTasks from "../../components/BrowseTasks";
 
 const HomePage = () => {
   const width1 = Dimensions.get("window").width;
@@ -19,7 +20,7 @@ const HomePage = () => {
         </ScrollView>
       </View>
       <View style={styles.body}>
-        <Text>HomePage</Text>
+        <BrowseTasks />
       </View>
     </View>
   );
@@ -30,10 +31,7 @@ export default HomePage;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
-    margin: 10,
-    borderRadius: 10,
   },
-
-  header: {},
+  body: { flex: 1, marginHorizontal: 20 },
+  header: { marginLeft: 20 },
 });
