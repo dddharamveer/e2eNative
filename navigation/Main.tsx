@@ -7,6 +7,7 @@ import IconButton from "../components/ui/IconButton";
 import { Colors } from "../constants/Colors";
 import BrowseTasks from "../components/BrowseTasks";
 import { AuthContext } from "../store/authContext";
+import Account from "../screens/Account";
 
 function HomeScreen() {
   return (
@@ -141,7 +142,7 @@ export default function Main() {
       />
       <Tab.Screen
         name="Account"
-        component={AccountScreen}
+        component={Account}
         options={({ navigation }) => ({
           tabBarIcon: ({ color, size }) => {
             return (
