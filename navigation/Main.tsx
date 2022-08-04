@@ -17,6 +17,7 @@ import HomePage from "../screens/Main/HomePage";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BackButton } from "../components/Header";
 import { FontAwesome5, Octicons } from "@expo/vector-icons";
+import MyTasks from "../screens/MyTasks";
 
 function TasksScreen() {
     return (
@@ -123,7 +124,7 @@ export default function Main() {
             />
             <Tab.Screen
                 name="Tasks"
-                component={TasksScreen}
+                component={MyTasks}
                 options={{
                     tabBarIcon: ({ color, size }) => {
                         return (
