@@ -42,11 +42,18 @@ const SortDropdown = () => {
         return <FontAwesome5 name="chevron-down" size={16} color="white" />;
       }}
       dropdownStyle={{
+        flex: 1,
         borderRadius: 10,
+        backgroundColor: "#22613bc1",
       }}
-      rowStyle={{}}
+      rowStyle={{
+        backgroundColor: "#22613bc1",
+        borderBottomWidth: 0,
+      }}
       rowTextStyle={{
+        padding: 10,
         textAlign: "left",
+        color: "#ffffff",
       }}
     />
   );

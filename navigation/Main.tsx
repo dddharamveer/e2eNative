@@ -14,6 +14,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { FontAwesome5, Octicons } from "@expo/vector-icons";
 import MyTasks from "../screens/Main/MyTasks";
+import Tasks from "./TasksNavigation";
 
 function CategoryScreen() {
   return (
@@ -40,7 +41,7 @@ export default function Main() {
       })}>
       <Tab.Screen
         name="Home"
-        component={HomePage}
+        component={Tasks}
         options={{
           tabBarIcon: ({ color, size }) => {
             return <FontAwesome5 name="home" size={size} color={color} />;

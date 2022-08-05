@@ -3,7 +3,7 @@ import React from "react";
 import SortDropdown from "../../components/ui/SortDropdown";
 import BrowseTasks from "../../components/BrowseTasks";
 
-const HomePage = () => {
+const HomePage = ({ navigation }) => {
   const width1 = Dimensions.get("window").width;
   console.log(width1);
 
@@ -17,7 +17,7 @@ const HomePage = () => {
         </ScrollView>
       </View>
       <View style={styles.body}>
-        <BrowseTasks />
+        <BrowseTasks navigation={navigation} />
       </View>
     </View>
   );
