@@ -33,6 +33,6 @@ export async function LoginWithEmail(email: string, password: string) {
     const response = await signInWithEmailAndPassword(auth, email, password);
     return response.user;
   } catch (err) {
-    console.log(err);
+    throw new Error(err);
   }
 }

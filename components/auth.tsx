@@ -14,8 +14,19 @@ import { fonts } from "../constants/fonts";
 import { useState } from "react";
 import { Inter_100Thin } from "@expo-google-fonts/inter";
 import Footer from "./footer";
+import { authErrorHandler } from "../constants/auth-error-handler";
 
-const Auth = ({ type, size, auth }: { type: string; size: number, auth: (email: string, password: string) => {} }) => {
+const Auth = ({
+  type,
+  size,
+  auth,
+  error,
+}: {
+  type: string;
+  size: number;
+  auth: (email: string, password: string) => {};
+  error: string;
+}) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   function emailHandler(text: string) {
@@ -47,6 +58,7 @@ const Auth = ({ type, size, auth }: { type: string; size: number, auth: (email: 
 
     auth(email, password);
   }
+
   return (
     <View style={[styles.inner, { height: Dimensions.get("screen").height }]}>
       <View style={styles.logoView}>
@@ -58,6 +70,9 @@ const Auth = ({ type, size, auth }: { type: string; size: number, auth: (email: 
       </View>
 
       <View style={[styles.body]}>
+        {error && (
+          <Text style={{ color: "red" }}>{authErrorHandler(error)}</Text>
+        )}
         <View style={styles.title}>
           <Text style={styles.titleText}>{type}</Text>
         </View>

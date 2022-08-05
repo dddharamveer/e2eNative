@@ -7,8 +7,8 @@ import {
     Pressable,
 } from "react-native";
 import React, { useState } from "react";
-import Tasks from "../components/Tasks";
-import ButtonUi from "../components/ui/ButtonsUi";
+import Tasks from "../../components/Tasks";
+import ButtonUi from "../../components/ui/ButtonsUi";
 
 const MyTasks = () => {
     const [isEnabled, setIsEnabled] = useState(true);
