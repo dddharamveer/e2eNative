@@ -3,7 +3,7 @@ import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import Tasks from "./Tasks";
 
-const BrowseTasks = ({ navigation }) => {
+const BrowseTasks = () => {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <Tasks
@@ -14,7 +14,6 @@ const BrowseTasks = ({ navigation }) => {
         location="North kellyville NSW,"
         price={400}
         time="Anytime"
-        navigation={navigation}
       />
       <Tasks
         title="Fix door handle"
@@ -24,7 +23,6 @@ const BrowseTasks = ({ navigation }) => {
         location="Sunshine West VIC, Aus"
         price={750}
         time="Anytime"
-        navigation={navigation}
       />
       <Tasks
         title="Fix door handle"
@@ -34,7 +32,6 @@ const BrowseTasks = ({ navigation }) => {
         location="Sunshine West VIC, Aus"
         price={750}
         time="Anytime"
-        navigation={navigation}
       />
       <Tasks
         title="Fix door handle"
@@ -44,7 +41,6 @@ const BrowseTasks = ({ navigation }) => {
         location="Sunshine West VIC, Aus"
         price={750}
         time="Anytime"
-        navigation={navigation}
       />
     </ScrollView>
   );

@@ -2,6 +2,7 @@ import React from "react";
 import { Image, StyleSheet, Text, View, Pressable } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Colors } from "../constants/Colors";
+import { useNavigation } from "@react-navigation/native";
 
 type Task = {
   title: string;
@@ -21,10 +22,10 @@ const Tasks: React.FC<Task> = ({
   price,
   image,
   open,
-  navigation,
 }) => {
+  const navigation = useNavigation();
   function handlePress() {
-    navigation && navigation.navigate("TaskContent");
+    navigation.navigate("TaskDetails");
   }
   return (
     <Pressable
