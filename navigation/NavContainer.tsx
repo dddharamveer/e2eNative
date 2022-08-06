@@ -20,6 +20,7 @@ const NavContainer = () => {
       </View>
     );
   }
+
   let content = <Auth />;
   if (user) {
     content = <Main />;

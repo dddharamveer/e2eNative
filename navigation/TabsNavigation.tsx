@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import IconButton from "../components/ui/IconButton";
@@ -11,8 +11,17 @@ import { fonts } from "../constants/fonts";
 
 import HomePage from "../screens/Main/HomePage";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FontAwesome5, Octicons } from "@expo/vector-icons";
+import {
+  FontAwesome5,
+  Octicons,
+  AntDesign,
+  Ionicons,
+  SimpleLineIcons,
+  MaterialIcons,
+  Feather,
+} from "@expo/vector-icons";
 import MyTasks from "../screens/Main/MyTasks";
+import { Children } from "react";
 
 function CategoryScreen() {
   return (
@@ -25,14 +34,41 @@ function CategoryScreen() {
 
 const Tab = createBottomTabNavigator();
 
-export default function TabsNavigation() {
+export default function TabsNavigation({ navigation }) {
+  function Icons({ children, onPress }) {
+    return (
+      <Pressable
+        onPress={onPress}
+        style={{
+          top: -30,
+          justifyContent: "center",
+          alignItems: "center",
+          elevation: 2,
+        }}>
+        <View
+          style={{
+            width: 60,
+            height: 60,
+            borderRadius: 35,
+            backgroundColor: Colors.secondary,
+          }}>
+          {children}
+        </View>
+      </Pressable>
+    );
+  }
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarShowLabel: false,
+
+        tabBarActiveTintColor: Colors.secondary,
         tabBarStyle: {
+          position: "absolute",
+
           height: "8%",
-          backgroundColor: Colors.secondary,
+          borderRadius: 30,
+          margin: 10,
         },
       })}>
       <Tab.Screen
@@ -40,7 +76,9 @@ export default function TabsNavigation() {
         component={HomePage}
         options={{
           tabBarIcon: ({ color, size }) => {
-            return <FontAwesome5 name="home" size={size} color={color} />;
+            return (
+              <Ionicons name="md-home-outline" size={size} color={color} />
+            );
           },
           header: () => {
             return (
@@ -57,7 +95,7 @@ export default function TabsNavigation() {
                   }}>
                   Hi, Bharat Adya
                 </Text>
-                <Octicons name="bell-fill" size={30} color={Colors.secondary} />
+                <Feather name="bell" size={30} color={Colors.secondary} />
               </SafeAreaView>
             );
           },
@@ -68,7 +106,9 @@ export default function TabsNavigation() {
         component={MyTasks}
         options={{
           tabBarIcon: ({ color, size }) => {
-            return <FontAwesome5 name="comments" size={size} color={color} />;
+            return (
+              <SimpleLineIcons name="notebook" size={size} color={color} />
+            );
           },
         }}
       />
@@ -77,7 +117,15 @@ export default function TabsNavigation() {
         component={BrowseTasks}
         options={{
           tabBarIcon: ({ color, size }) => {
-            return <FontAwesome5 name="search" size={size} color={color} />;
+            return <AntDesign name="plus" size={size} color="white" />;
+          },
+          tabBarButton: (props) => {
+            return (
+              <Icons
+                {...props}
+                onPress={() => navigation.navigate("CreateTask")}
+              />
+            );
           },
         }}
       />
@@ -104,21 +152,13 @@ export default function TabsNavigation() {
       <Tab.Screen
         name="Account"
         component={Account}
-        options={({ navigation }) => ({
+        options={{
           tabBarIcon: ({ color, size }) => {
             return (
-              <IconButton
-                name="user-circle"
-                iconColor={color}
-                size={22}
-                color="transparent"
-                onPress={() => {
-                  navigation.navigate("Account");
-                }}
-              />
+              <MaterialIcons name="account-circle" size={size} color={color} />
             );
           },
-        })}
+        }}
       />
     </Tab.Navigator>
   );
