@@ -1,13 +1,9 @@
-import { StyleSheet, View, ScrollView, Dimensions } from "react-native";
-import React from "react";
+import { StyleSheet, View, ScrollView, Dimensions, Text } from "react-native";
+import React, { useContext, useEffect } from "react";
 import SortDropdown from "../../components/ui/SortDropdown";
 import BrowseTasks from "../../components/BrowseTasks";
-import Tasks from "../../navigation/TasksNavigation";
 
-const HomePage = ({  }) => {
-  const width1 = Dimensions.get("window").width;
-  console.log(width1);
-
+const HomePage = ({}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -18,7 +14,7 @@ const HomePage = ({  }) => {
         </ScrollView>
       </View>
       <View style={styles.body}>
-        <BrowseTasks  />
+        <BrowseTasks />
       </View>
     </View>
   );
