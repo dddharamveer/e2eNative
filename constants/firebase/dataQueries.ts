@@ -17,7 +17,7 @@ export const tasks = async () => {
 
   const querySnapshot = await getDocs(taskQuery);
 
-  let array: any = [];
+  let array = [];
 
   querySnapshot.forEach((doc) => {
     array.push(doc.data());

@@ -28,17 +28,20 @@ const BrowseTasks = () => {
   const getTasks = async () => {
     setRefresh(true);
     let array = await tasks();
+
     settask(array);
     setRefresh(false);
   };
 
   useEffect(() => {
-    const unsub = getTasks();
+    getTasks();
   }, []);
   return (
     <ScrollView
       style={styles.container}
-      refreshControl={<RefreshControl refreshing={refresh} onRefresh={tasks} />}
+      refreshControl={
+        <RefreshControl refreshing={refresh} onRefresh={getTasks} />
+      }
       showsVerticalScrollIndicator={false}>
       {task.map((item) => {
         return (
