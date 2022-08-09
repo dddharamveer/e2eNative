@@ -16,7 +16,6 @@ const Button1 = ({
     <Pressable
       android_ripple={{ color: "#9f9b9bff", radius: 160 }}
       style={{
-        width: "100%",
         justifyContent: "center",
         alignItems: "center",
         height: 50,

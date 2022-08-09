@@ -20,7 +20,9 @@ import {
 import firebaseApp from "../../constants/firebase/firebase";
 import { isEmpty } from "@firebase/util";
 import { AuthContext } from "../../store/authContext";
+import { getStorage } from "firebase/storage";
 
+const storage = getStorage(firebaseApp);
 const CreateTask = () => {
   const db = getFirestore(firebaseApp);
   const [Name, setName] = useState();

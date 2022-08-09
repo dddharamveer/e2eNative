@@ -17,6 +17,7 @@ function Auth() {
         headerBackVisible: false,
         headerLeft: () => <BackButton />,
         headerBackButtonMenuEnabled: false,
+        animation: "slide_from_right",
       }}>
       <stack.Screen
         name="homePage"

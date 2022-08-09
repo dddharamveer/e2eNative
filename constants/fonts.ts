@@ -17,6 +17,7 @@ import {
 export const fonts = {
   main: "Rubik_300Light",
   bold: "Rubik_400Regular",
+  extrabold: "Rubik_500Medium",
 };
 
 export const rubik = {

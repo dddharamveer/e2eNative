@@ -20,6 +20,7 @@ import {
 } from "firebase/firestore";
 import firebaseApp from "../constants/firebase/firebase";
 import { tasks } from "../constants/firebase/dataQueries";
+import Task2 from "./Task2";
 
 const BrowseTasks = () => {
   const [task, settask] = useState([]);
@@ -45,16 +46,22 @@ const BrowseTasks = () => {
       showsVerticalScrollIndicator={false}>
       {task.map((item) => {
         return (
-          <Tasks
+          <Task2
             key={item.name}
             title={item.name}
-            time="Anytime"
-            price={parseInt(item.budget)}
-            date={item.date}
-            open
-            location="Sunshine West VIC, Aus"
-            image="https://avatars.githubusercontent.com/u/54268396?s=96&v=4"
+            price={item.budget}
+            status={item.status}
           />
+          // <Tasks
+          //   key={item.name}
+          //   title={item.name}
+          //   time="Anytime"
+          //   price={parseInt(item.budget)}
+          //   date={item.date}
+          //   open
+          //   location="Sunshine West VIC, Aus"
+          //   image="https://avatars.githubusercontent.com/u/54268396?s=96&v=4"
+          // />
         );
       })}
       <View

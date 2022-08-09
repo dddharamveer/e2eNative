@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "mycoolredirect",
     "name": "mobileApp",
     "slug": "mobileApp",
     "version": "1.0.0",

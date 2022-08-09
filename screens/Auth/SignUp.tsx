@@ -30,6 +30,7 @@ const SignUp = () => {
     <KeyboardAwareScrollView
       scrollEnabled={true}
       contentContainerStyle={{
+        flex: 1,
         backgroundColor: "white",
       }}>
       <Auth type="Sign Up" size={3} auth={createAccount} />

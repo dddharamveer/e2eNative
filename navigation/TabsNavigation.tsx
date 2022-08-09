@@ -1,4 +1,4 @@
-import { Pressable, Text, View } from "react-native";
+import { Image, Pressable, Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import IconButton from "../components/ui/IconButton";
@@ -22,6 +22,7 @@ import {
 } from "@expo/vector-icons";
 import MyTasks from "../screens/Main/MyTasks";
 import { Children } from "react";
+import CreateTask from "../screens/Main/CreateTask";
 
 function CategoryScreen() {
   return (
@@ -67,7 +68,7 @@ export default function TabsNavigation({ navigation }) {
           position: "absolute",
 
           height: "8%",
-          borderRadius: 30,
+          borderRadius: 5,
           margin: 10,
         },
       })}>
@@ -84,18 +85,35 @@ export default function TabsNavigation({ navigation }) {
             return (
               <SafeAreaView
                 style={{
-                  margin: 20,
+                  backgroundColor: "white",
+                  padding: 30,
                   flexDirection: "row",
                   justifyContent: "space-between",
                 }}>
                 <Text
                   style={{
-                    fontFamily: fonts.bold,
-                    fontSize: 25,
+                    fontFamily: fonts.main,
+                    fontSize: 15,
                   }}>
-                  Hi, Bharat Adya
+                  Hi, Bharat{"\n"}
+                  <Text style={{ fontFamily: fonts.extrabold, fontSize: 20 }}>
+                    Good Morning !
+                  </Text>
                 </Text>
-                <Feather name="bell" size={30} color={Colors.secondary} />
+                <View>
+                  <Image
+                    style={{
+                      borderWidth: 1,
+                      borderColor: Colors.secondary,
+                      width: 40,
+                      height: 40,
+                      borderRadius: 25,
+                    }}
+                    source={{
+                      uri: "https://images.unsplash.com/photo-1659492061718-f3708aae95d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80",
+                    }}
+                  />
+                </View>
               </SafeAreaView>
             );
           },
@@ -114,18 +132,10 @@ export default function TabsNavigation({ navigation }) {
       />
       <Tab.Screen
         name="Browse Tasks"
-        component={BrowseTasks}
+        component={CreateTask}
         options={{
           tabBarIcon: ({ color, size }) => {
-            return <AntDesign name="plus" size={size} color="white" />;
-          },
-          tabBarButton: (props) => {
-            return (
-              <Icons
-                {...props}
-                onPress={() => navigation.navigate("CreateTask")}
-              />
-            );
+            return <AntDesign name="plus" size={size} color="black" />;
           },
         }}
       />

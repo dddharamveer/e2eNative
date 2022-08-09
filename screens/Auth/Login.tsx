@@ -36,8 +36,8 @@ const Login = () => {
   return (
     <KeyboardAwareScrollView
       style={styles.container}
-      
       contentContainerStyle={{
+        flex: 1,
         backgroundColor: "white",
       }}>
       <Auth type="Log in" size={4.3} auth={LoginHandler} error={error} />
