@@ -19,7 +19,7 @@ const HomePage = ({}) => {
     <View style={styles.container}>
       <KeyboardAvoidingView
         style={{
-          height: "10%",
+          height: 100,
           marginVertical: 10,
           flexDirection: "row",
           paddingHorizontal: 30,

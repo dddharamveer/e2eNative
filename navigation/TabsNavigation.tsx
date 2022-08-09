@@ -65,11 +65,8 @@ export default function TabsNavigation({ navigation }) {
 
         tabBarActiveTintColor: Colors.secondary,
         tabBarStyle: {
-          position: "absolute",
-
-          height: "8%",
+          height: 60,
           borderRadius: 5,
-          margin: 10,
         },
       })}>
       <Tab.Screen
