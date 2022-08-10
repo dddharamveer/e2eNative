@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, View, Button, Text } from "react-native";
 import IconButton from "./ui/IconButton";
-import { Colors } from "../contents/Colors";
+import { Colors } from "../constants/Colors";
 import React from "react";
 
 export const BackButton = () => {
@@ -22,7 +22,7 @@ export const BackButton = () => {
     );
 };
 
-export const Title = ({ children }) => {
+export const Title: React.FC = ({ children }) => {
     return (
         <View>
             <Text style={styles.title}>{children}</Text>
