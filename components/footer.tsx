@@ -4,11 +4,8 @@ const Footer = () => {
   return (
     <View style={styles.terms}>
       <Text style={styles.FootersubTitle}>
-        By signin up, I agree to Tasker’s{" "}
-        <Text style={{ textDecorationLine: "underline" }}>
-          Terms & Conditions
-        </Text>
-        , & Community Guildelines. Privacy Policy.
+        By clicking "Continue with Email/Apple/Google/Facebook" above you agree
+        to Tasker's Terms of Service and Privacy Policy.
       </Text>
     </View>
   );

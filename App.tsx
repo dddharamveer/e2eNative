@@ -15,7 +15,7 @@ export default function App() {
 
   return (
     <>
-      <StatusBar style="light" />
+      <StatusBar style="auto" />
       <AuthProvider>
         <View style={styles.container}>
           <NavContainer />

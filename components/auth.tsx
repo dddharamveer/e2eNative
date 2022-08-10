@@ -14,15 +14,28 @@ import { fonts } from "../constants/fonts";
 import { useState } from "react";
 import { Inter_100Thin } from "@expo-google-fonts/inter";
 import Footer from "./footer";
+import { authErrorHandler } from "../constants/auth-error-handler";
+import ImageContainer from "./Container-Rounded-Image";
+import Button1 from "./ui/Button-1";
 
-const Auth = ({ type, size, auth }: { type: string; size: number }) => {
+const Auth = ({
+  type,
+  size,
+  auth,
+  error,
+}: {
+  type: string;
+  size: number;
+  auth: (email: string, password: string) => {};
+  error: string;
+}) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  function emailHandler(text) {
+  function emailHandler(text: string) {
     setEmail(text);
   }
 
-  function passwordHandler(text) {
+  function passwordHandler(text: string) {
     setPassword(text);
   }
   function authHandler() {
@@ -47,52 +60,39 @@ const Auth = ({ type, size, auth }: { type: string; size: number }) => {
 
     auth(email, password);
   }
-  return (
-    <View style={[styles.inner, { height: Dimensions.get("screen").height }]}>
-      <View style={styles.logoView}>
-        <Image
-          resizeMode="contain"
-          style={styles.logo}
-          source={require("../assets/image1.png")}
-        />
-      </View>
 
-      <View style={[styles.body]}>
-        <View style={styles.title}>
-          <Text style={styles.titleText}>{type}</Text>
-        </View>
-        <View style={styles.inputs}>
-          {type === "Sign Up" && (
-            <Text style={styles.account}>Create a new account</Text>
-          )}
-          <TextInputUi name="Email" onChangeText={emailHandler} />
-          <TextInputUi
-            name="Password"
-            password
-            onChangeText={passwordHandler}
-          />
-        </View>
-        {type === "Log in" && (
-          <Pressable>
-            <Text style={styles.forgotpasswordText}>Forgot Password?</Text>
-          </Pressable>
-        )}
-        <View style={{ height: "42%" }}>
-          <ButtonUi
-            fill
-            color="white"
-            backgroundColor={Colors.secondary}
-            onPress={authHandler}>
-            {type == "Sign Up" ? "Sign Up" : "Log in"}
-          </ButtonUi>
-          {type == "Sign Up" && (
-            <View style={styles.footer}>
-              <Footer />
-            </View>
-          )}
-        </View>
+  // { height: Dimensions.get("screen").height }
+
+  return (
+    <ImageContainer>
+      {error && <Text style={{ color: "red" }}>{authErrorHandler(error)}</Text>}
+      <View style={styles.title}>
+        <Text style={styles.titleText}>{type}</Text>
       </View>
-    </View>
+      <View style={styles.inputs}>
+        {type === "Sign Up" && (
+          <Text style={styles.account}>Create a new account</Text>
+        )}
+        <TextInputUi name="Email" onChangeText={emailHandler} />
+        <TextInputUi name="Password" password onChangeText={passwordHandler} />
+      </View>
+      {type === "Log in" && (
+        <Pressable>
+          <Text style={styles.forgotpasswordText}>Forgot Password?</Text>
+        </Pressable>
+      )}
+      <View style={{ flex: 1 }}>
+        <Button1 backgroundColor={Colors.secondary} onPress={authHandler}>
+          {type == "Sign Up" ? "Sign Up" : "Log in"}
+        </Button1>
+
+        {type == "Sign Up" && (
+          <View style={styles.footer}>
+            <Footer />
+          </View>
+        )}
+      </View>
+    </ImageContainer>
   );
 };
 
