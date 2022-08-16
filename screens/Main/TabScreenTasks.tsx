@@ -13,22 +13,34 @@ import BrowseTasks from "../../components/BrowseTasks";
 import Button2 from "../../components/ui/Button-2";
 import { EvilIcons } from "@expo/vector-icons";
 import { fonts } from "../../constants/fonts";
+import { Colors } from "../../constants/Colors";
 
-const HomePage = ({}) => {
+const TabScreenTasks = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      {/* <View style={styles.header}>
+      <View style={styles.header}>
         <View style={{ flex: 1 / 2 }}>
-          <Button2 TextColor borderButton iconName="sort">
+          <Button2
+            TextColor
+            borderButton
+            iconName="sort"
+            iconColor={Colors.secondary}>
             Sort by
           </Button2>
         </View>
         <View style={{ flex: 1 / 2 }}>
-          <Button2 TextColor borderButton iconName="filter">
+          <Button2
+            TextColor
+            borderButton
+            onPress={() => {
+              navigation.navigate("Filter");
+            }}
+            iconColor={Colors.secondary}
+            iconName="filter">
             Filter
           </Button2>
         </View>
-      </View> */}
+      </View>
       <View style={styles.body}>
         <BrowseTasks />
       </View>
@@ -36,7 +48,7 @@ const HomePage = ({}) => {
   );
 };
 
-export default HomePage;
+export default TabScreenTasks;
 
 const styles = StyleSheet.create({
   container: {
@@ -47,7 +59,6 @@ const styles = StyleSheet.create({
   header: {
     padding: 10,
 
-    backgroundColor: "#cac8c8",
     flexDirection: "row",
   },
 });
