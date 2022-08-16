@@ -1,4 +1,4 @@
-import { Pressable, Text, View } from "react-native";
+import { Image, Pressable, Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import IconButton from "../components/ui/IconButton";
@@ -18,98 +18,36 @@ import {
   Ionicons,
   SimpleLineIcons,
   MaterialIcons,
+  EvilIcons,
   Feather,
 } from "@expo/vector-icons";
 import MyTasks from "../screens/Main/MyTasks";
-import { Children } from "react";
-
-function CategoryScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Categories!</Text>
-      <FontAwesome5 name="plus" size={30} color={Colors.Primary} />
-    </View>
-  );
-}
+import React, { Children, useEffect } from "react";
+import CreateTask from "../screens/Main/CreateTask";
+import UploadProfile from "../screens/Main/uploadProfile";
+import { getUser } from "../constants/firebase/dataQueries";
+import { Header } from "../components/Header";
+import { CategoriesScreen } from "../screens/Main/Categories";
 
 const Tab = createBottomTabNavigator();
 
 export default function TabsNavigation({ navigation }) {
-  function Icons({ children, onPress }) {
-    return (
-      <Pressable
-        onPress={onPress}
-        style={{
-          top: -30,
-          justifyContent: "center",
-          alignItems: "center",
-          elevation: 2,
-        }}>
-        <View
-          style={{
-            width: 60,
-            height: 60,
-            borderRadius: 35,
-            backgroundColor: Colors.secondary,
-          }}>
-          {children}
-        </View>
-      </Pressable>
-    );
-  }
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarShowLabel: false,
-
+      screenOptions={{
         tabBarActiveTintColor: Colors.secondary,
-        tabBarStyle: {
-          position: "absolute",
-
-          height: "8%",
-          borderRadius: 30,
-          margin: 10,
-        },
-      })}>
+        tabBarInactiveTintColor: "black",
+        tabBarLabelStyle: { fontFamily: fonts.bold, paddingBottom: 2 },
+        tabBarStyle: {},
+      }}>
       <Tab.Screen
-        name="Home"
-        component={HomePage}
+        name="Create a Task"
+        component={CategoriesScreen}
         options={{
           tabBarIcon: ({ color, size }) => {
-            return (
-              <Ionicons name="md-home-outline" size={size} color={color} />
-            );
+            return <AntDesign name="appstore1" color={color} size={size} />;
           },
-          header: () => {
-            return (
-              <SafeAreaView
-                style={{
-                  margin: 20,
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}>
-                <Text
-                  style={{
-                    fontFamily: fonts.bold,
-                    fontSize: 25,
-                  }}>
-                  Hi, Bharat Adya
-                </Text>
-                <Feather name="bell" size={30} color={Colors.secondary} />
-              </SafeAreaView>
-            );
-          },
-        }}
-      />
-      <Tab.Screen
-        name="Tasks"
-        component={MyTasks}
-        options={{
-          tabBarIcon: ({ color, size }) => {
-            return (
-              <SimpleLineIcons name="notebook" size={size} color={color} />
-            );
-          },
+          header: ({ navigation }) => <Header navigation={navigation} />,
         }}
       />
       <Tab.Screen
@@ -117,46 +55,44 @@ export default function TabsNavigation({ navigation }) {
         component={BrowseTasks}
         options={{
           tabBarIcon: ({ color, size }) => {
-            return <AntDesign name="plus" size={size} color="white" />;
+            return <EvilIcons name="search" size={size} color={color} />;
           },
-          tabBarButton: (props) => {
-            return (
-              <Icons
-                {...props}
-                onPress={() => navigation.navigate("CreateTask")}
-              />
-            );
+          headerRight: () => (
+            <EvilIcons
+              name="search"
+              color={Colors.secondary}
+              style={{ marginRight: 20 }}
+              size={30}
+            />
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="My Tasks"
+        component={MyTasks}
+        options={{
+          tabBarIcon: ({ color, size }) => {
+            return <EvilIcons name="archive" size={size} color={color} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Messages"
+        component={HomePage}
+        options={{
+          tabBarIcon: ({ color, size }) => {
+            return <EvilIcons name="comment" size={size} color={color} />;
           },
         }}
       />
 
       <Tab.Screen
-        name="Categories"
-        component={CategoryScreen}
-        options={({ navigation }) => ({
-          tabBarIcon: ({ color, size }) => {
-            return (
-              <IconButton
-                name="calendar"
-                iconColor={color}
-                size={22}
-                color="transparent"
-                onPress={() => {
-                  navigation.navigate("Categories");
-                }}
-              />
-            );
-          },
-        })}
-      />
-      <Tab.Screen
         name="Account"
         component={Account}
         options={{
           tabBarIcon: ({ color, size }) => {
-            return (
-              <MaterialIcons name="account-circle" size={size} color={color} />
-            );
+            return <EvilIcons name="user" size={size} color={color} />;
           },
         }}
       />

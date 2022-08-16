@@ -5,196 +5,160 @@ import {
   Image,
   Button,
   ScrollView,
+  TextInput,
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { EvilIcons } from "@expo/vector-icons";
 import IconButton from "../../components/ui/IconButton";
 import { fonts } from "../../constants/fonts";
 import { Colors } from "../../constants/Colors";
-const TasksDetails = ({ navigation }) => {
+import Button1 from "../../components/ui/Button-1";
+import { getFullDate } from "../../constants/Formating";
+const TasksDetails = ({ navigation, route }) => {
+  const { item } = route.params;
   return (
     <View style={styles.container}>
-      <SafeAreaView style={styles.header}>
-        <IconButton
-          name="angle-left"
-          size={20}
-          iconColor="white"
-          color={Colors.secondary}
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
-        <IconButton
-          name="search"
-          size={20}
-          iconColor="white"
-          color={Colors.secondary}
-        />
-      </SafeAreaView>
-      <View style={styles.image}>
-        <Image
-          style={{ width: "100%", height: "100%" }}
-          source={{
-            uri: "https://images.unsplash.com/photo-1509418969973-c560ee8f02a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwzNTYwNDE5fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=1100&q=60",
-          }}
-        />
-      </View>
-      <View style={{ padding: 20 }}>
-        <View>
-          <Text style={{ fontFamily: fonts.bold, fontSize: 40 }}>Fix this</Text>
-          <View style={{ flexDirection: "row", marginVertical: 6 }}>
-            <FontAwesome5 name="map-marker-alt" size={15} />
-            <Text
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+        <Text style={styles.text}>{item.title}</Text>
+        <View style={{ marginVertical: 19 }}>
+          <Text style={styles.subText}>Posted by</Text>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}>
+            <View
               style={{
-                fontFamily: fonts.main,
-                fontSize: 15,
-                color: Colors.Primary,
-                marginHorizontal: 5,
+                flexDirection: "row",
+                marginVertical: 5,
+                alignItems: "center",
               }}>
-              Location
-            </Text>
+              <Image
+                source={{ uri: item.profilePic }}
+                style={{
+                  width: 50,
+                  height: 50,
+                  borderRadius: 25,
+                  marginRight: 6,
+                }}
+              />
+              <Text style={{ fontFamily: fonts.bold }}>Bharat Adya</Text>
+            </View>
+            <Text style={{ fontFamily: fonts.bold }}>10 mins</Text>
           </View>
         </View>
-        <View style={styles.badge}>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <View style={{ height: 280, width: "100%", borderRadius: 10 }}>
+          <Image
+            style={{ width: "100%", height: "100%", borderRadius: 15 }}
+            source={{
+              uri: "https://images.unsplash.com/photo-1657299156725-dc862fea3e11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+            }}
+          />
+        </View>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginVertical: 20,
+          }}>
+          <View style={{ flex: 1 / 2 }}>
+            <Text style={styles.subText}>Location</Text>
             <View
               style={{
-                backgroundColor: "#4a3f7b",
-                height: 30,
-                width: 30,
-                borderRadius: 30,
-                justifyContent: "center",
-                alignItems: "center",
-                marginRight: 5,
+                flexDirection: "row",
+                alignItems: "flex-start",
+                flex: 1,
+                marginVertical: 11,
               }}>
-              <FontAwesome5 name="book-open" size={15} color="white" />
+              <EvilIcons name="location" size={18} />
+              <Text style={{ fontFamily: fonts.bold, fontSize: 13, flex: 1 }}>
+                {item.location}
+              </Text>
             </View>
-            <Text>Open till 8.30pm</Text>
           </View>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <View
-              style={{
-                backgroundColor: "#4a3f7b",
-                height: 30,
-                width: 30,
-                borderRadius: 30,
-                justifyContent: "center",
-                alignItems: "center",
-                marginRight: 5,
-              }}>
-              <FontAwesome5 name="star" size={15} color="white" />
+          <View style={{ flex: 1 / 2, flexDirection: "column" }}>
+            <Text style={styles.subText}>Due Date</Text>
+            <View style={{ marginVertical: 11 }}>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}>
+                <EvilIcons name="calendar" size={18} />
+                <Text style={{ fontFamily: fonts.bold, fontSize: 13 }}>
+                  {getFullDate(new Date(item.date.seconds * 1000))}
+                </Text>
+              </View>
+
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}>
+                <EvilIcons name="clock" size={18} />
+                <Text style={{ fontFamily: fonts.bold, fontSize: 13 }}>
+                  Anytime
+                </Text>
+              </View>
             </View>
-            <Text>4.4</Text>
           </View>
-          {/* <FontAwesome5 name="star" size={30} color="green" />
-          <FontAwesome5 name="globe-americas" size={30} color="green" /> */}
         </View>
 
-        <ScrollView style={{}}>
-          <Text
-            style={{
-              fontFamily: fonts.bold,
-              fontSize: 25,
-              marginVertical: 15,
-            }}>
-            Offers
-          </Text>
-          <View
-            style={{
-              flexDirection: "row",
-              marginVertical: 6,
-              borderWidth: 2,
-              padding: 10,
-              borderRadius: 10,
-              justifyContent: "space-between",
-              alignItems: "center",
-              borderColor: Colors.secondary,
-              elevation: 5,
-              backgroundColor: "white",
-            }}>
-            <View
+        <View>
+          <Text style={[styles.subText, { marginBottom: 10 }]}>Details</Text>
+          <Text style={{ fontFamily: fonts.bold }}>{item.description}</Text>
+        </View>
+        <View
+          style={{
+            marginVertical: 20,
+            backgroundColor: Colors.secondary,
+            borderRadius: 15,
+            padding: 35,
+          }}>
+          <View>
+            <Text
               style={{
-                height: 50,
-                width: 50,
-                borderRadius: 100,
-                borderWidth: 2,
-                borderColor: Colors.secondary,
+                textAlign: "center",
+                color: "white",
+                fontFamily: fonts.bold,
+                fontSize: 18,
+                marginBottom: 10,
               }}>
-              <Image
-                source={{
-                  uri: "https://images.unsplash.com/photo-1461800919507-79b16743b257?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
-                }}
-                style={{ width: "100%", height: "100%", borderRadius: 50 }}
-                resizeMode="cover"
-              />
-            </View>
-            <Text style={{ fontFamily: fonts.main, fontSize: 20 }}>$100</Text>
+              Budget
+            </Text>
+
+            <Button1 backgroundColor="white" color>
+              RS {item.Budget}
+            </Button1>
           </View>
-          <View
+          <View style={{ marginTop: 30 }}>
+            <Button1 backgroundColor="white" color>
+              Make an Offer
+            </Button1>
+          </View>
+        </View>
+        <View style={{ marginBottom: 20 }}>
+          <Text style={styles.subText}>Ask Questions</Text>
+          <TextInput
+            multiline
+            numberOfLines={5}
+            textAlignVertical="top"
+            maxLength={250}
             style={{
-              flexDirection: "row",
-              marginVertical: 6,
-              borderWidth: 2,
               padding: 10,
-              borderRadius: 10,
-              justifyContent: "space-between",
-              alignItems: "center",
-              borderColor: Colors.secondary,
-              elevation: 5,
-              backgroundColor: "white",
-            }}>
-            <View
-              style={{
-                height: 50,
-                width: 50,
-                borderRadius: 100,
-                borderWidth: 2,
-                borderColor: Colors.secondary,
-              }}>
-              <Image
-                source={{
-                  uri: "https://images.unsplash.com/photo-1606841216799-94d1952e4da7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=994&q=80",
-                }}
-                style={{ width: "100%", height: "100%", borderRadius: 50 }}
-                resizeMode="cover"
-              />
-            </View>
-            <Text style={{ fontFamily: fonts.main, fontSize: 20 }}>$100</Text>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              marginVertical: 6,
-              borderWidth: 2,
-              padding: 10,
-              borderRadius: 10,
-              justifyContent: "space-between",
-              alignItems: "center",
-              borderColor: Colors.secondary,
-              elevation: 5,
-              backgroundColor: "white",
-            }}>
-            <View
-              style={{
-                height: 50,
-                width: 50,
-                borderRadius: 100,
-                borderWidth: 2,
-                borderColor: Colors.secondary,
-              }}>
-              <Image
-                source={{
-                  uri: "https://images.unsplash.com/photo-1659475820627-42388f0f5388?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
-                }}
-                style={{ width: "100%", height: "100%", borderRadius: 50 }}
-                resizeMode="cover"
-              />
-            </View>
-            <Text style={{ fontFamily: fonts.main, fontSize: 20 }}>$100</Text>
-          </View>
-        </ScrollView>
-      </View>
+              borderWidth: 1,
+              borderRadius: 15,
+              marginVertical: 12,
+            }}
+          />
+          <Button1 backgroundColor={Colors.secondary}>Send</Button1>
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -202,16 +166,18 @@ const TasksDetails = ({ navigation }) => {
 export default TasksDetails;
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "white" },
-  image: { height: "30%" },
-  badge: { flexDirection: "row", justifyContent: "space-between" },
-  buttons: { flexDirection: "row", justifyContent: "space-between" },
-  header: {
-    width: "100%",
-    zIndex: 1,
-    position: "absolute",
-    padding: 20,
-    flexDirection: "row",
-    justifyContent: "space-between",
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+    paddingTop: 10,
+    paddingHorizontal: 14,
+  },
+  text: {
+    fontFamily: fonts.extrabold,
+    fontSize: 23,
+  },
+  subText: {
+    fontFamily: fonts.extrabold,
+    fontSize: 15,
   },
 });
