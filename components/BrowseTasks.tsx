@@ -21,10 +21,11 @@ import {
 import firebaseApp from "../constants/firebase/firebase";
 import { tasks } from "../constants/firebase/dataQueries";
 import Task2 from "./Task2";
-
+import { useNavigation } from "@react-navigation/native";
 const BrowseTasks = () => {
   const [task, settask] = useState([]);
   const [refresh, setRefresh] = useState(false);
+  const navigation = useNavigation();
 
   const getTasks = async () => {
     setRefresh(true);
@@ -37,6 +38,7 @@ const BrowseTasks = () => {
   useEffect(() => {
     getTasks();
   }, []);
+
   return (
     <ScrollView
       style={styles.container}
@@ -47,10 +49,18 @@ const BrowseTasks = () => {
       {task.map((item) => {
         return (
           <Task2
-            key={item.name}
-            title={item.name}
-            price={item.budget}
+            onPress={() => {
+              navigation.navigate("TaskDetails", {
+                item: item,
+              });
+            }}
+            key={item.id}
+            title={item.title}
+            price={item.Budget}
             status={item.status}
+            date={new Date(item.date.seconds * 1000)}
+            location={item.location}
+            profile={item.profilePic}
           />
           // <Tasks
           //   key={item.name}
