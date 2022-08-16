@@ -45,7 +45,6 @@ const Tasks: React.FC<Task> = ({
           flexDirection: "row",
           justifyContent: "space-between",
         }}>
-        {/* location */}
         <View style={styles.icons}>
           <View style={{ marginRight: 3 }}>
             <FontAwesome5 name="location-arrow" color={Colors.secondary} />

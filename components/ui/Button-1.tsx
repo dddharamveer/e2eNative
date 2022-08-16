@@ -9,6 +9,7 @@ const Button1 = ({
   backgroundColor,
   marginVertical,
   marginTop,
+  color,
 }: {
   backgroundColor: string;
 }) => {
@@ -26,7 +27,11 @@ const Button1 = ({
       }}
       onPress={onPress}>
       <Text
-        style={{ color: "white", fontFamily: fonts.bold, fontSize: fontSize }}>
+        style={{
+          color: color ? "black" : "white",
+          fontFamily: fonts.bold,
+          fontSize: fontSize,
+        }}>
         {children}
       </Text>
     </Pressable>
