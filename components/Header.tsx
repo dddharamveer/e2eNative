@@ -2,10 +2,11 @@ import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, View, Button, Text, Image, Pressable } from "react-native";
 import IconButton from "./ui/IconButton";
 import { Colors } from "../constants/Colors";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getUser } from "../constants/firebase/dataQueries";
 import { fonts } from "../constants/fonts";
+import { AuthContext } from "../store/authContext";
 
 export const BackButton = () => {
   const navigation = useNavigation();
@@ -34,17 +35,7 @@ export const Title: React.FC = ({ children }) => {
 };
 
 export const Header = ({ navigation }) => {
-  const [search, setSearch] = React.useState();
-  const users = async () => {
-    const user = await getUser();
-    setSearch(user);
-  };
-  console.log(search);
-
-  useEffect(() => {
-    users();
-  }, []);
-  console.log(search);
+  const ctx = useContext(AuthContext);
 
   return (
     <SafeAreaView
@@ -60,7 +51,7 @@ export const Header = ({ navigation }) => {
             fontFamily: fonts.main,
             fontSize: 15,
           }}>
-          Hi, {search && search.Name}
+          Hi, {ctx.userData && ctx.userData.Name}
         </Text>
         <Text style={{ fontFamily: fonts.extrabold, fontSize: 20 }}>
           Good Morning !
@@ -79,8 +70,8 @@ export const Header = ({ navigation }) => {
             borderRadius: 25,
           }}
           source={{
-            uri: search
-              ? search.profilePic
+            uri: ctx.userData
+              ? ctx.userData.profilePic
               : "https://images.unsplash.com/photo-1610559176044-d2695ca6c63d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2138&q=80",
           }}
         />

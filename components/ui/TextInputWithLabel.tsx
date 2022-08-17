@@ -2,11 +2,15 @@ import { StyleSheet, Text, View, TextInput } from "react-native";
 import React from "react";
 import { fonts } from "../../constants/fonts";
 
-const TextInputWithLabel = ({ placeHolder, children }) => {
+const TextInputWithLabel = ({ placeHolder, children, onChangeText }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{children}</Text>
-      <TextInput placeholder={placeHolder} style={styles.textInput} />
+      <TextInput
+        placeholder={placeHolder}
+        onChangeText={onChangeText}
+        style={styles.textInput}
+      />
     </View>
   );
 };

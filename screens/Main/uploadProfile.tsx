@@ -36,6 +36,7 @@ const UploadProfile = () => {
   );
 
   const pick = async () => {
+    const ctx = useContext(AuthContext);
     const uploadImage = async (uri: any) => {
       const response = await fetch(uri);
       const blob = await response.blob();
@@ -46,6 +47,7 @@ const UploadProfile = () => {
         })
         .then((downloadUrl: string) => {
           setImage(downloadUrl);
+          ctx.changeUserData({ profilePic: downloadUrl });
           return setDoc(
             doc(db, "users", ctx.user.uid),
             {
@@ -86,8 +88,8 @@ const UploadProfile = () => {
         }}>
         <Image
           source={
-            !!image
-              ? { uri: image }
+            ctx.userData
+              ? { uri: ctx.userData.profilePic }
               : require("./1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg")
           }
           style={{ width: 95, height: 95, borderRadius: 50 }}

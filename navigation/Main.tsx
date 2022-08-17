@@ -29,7 +29,7 @@ export default function Main() {
         <stack.Screen
           name="CreateTask"
           component={CreateTask}
-          options={{ animation: "slide_from_bottom" }}
+          options={{ animation: "slide_from_bottom", headerShown: true }}
         />
         <stack.Screen name="Profile" component={UploadProfile} />
         <stack.Screen
