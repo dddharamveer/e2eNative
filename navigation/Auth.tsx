@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SignUp from "../screens/Auth/SignUp";
 import PhoneAuth from "../screens/Auth/PhoneAuth";
 import OtpVerification from "../screens/Auth/OtpVerification";
+import FilterScreen from "../screens/Main/FilterScreen";
 const stack = createNativeStackNavigator();
 
 function Auth() {

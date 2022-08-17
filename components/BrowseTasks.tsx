@@ -74,15 +74,6 @@ const BrowseTasks = () => {
           // />
         );
       })}
-      <View
-        style={{
-          height: 300,
-          width: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-        }}>
-        <Text>The End</Text>
-      </View>
     </ScrollView>
   );
 };

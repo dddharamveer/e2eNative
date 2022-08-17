@@ -9,7 +9,6 @@ import Account from "../screens/Main/Account";
 
 import { fonts } from "../constants/fonts";
 
-import HomePage from "../screens/Main/HomePage";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   FontAwesome5,
@@ -28,6 +27,7 @@ import UploadProfile from "../screens/Main/uploadProfile";
 import { getUser } from "../constants/firebase/dataQueries";
 import { Header } from "../components/Header";
 import { CategoriesScreen } from "../screens/Main/Categories";
+import TabScreenTasks from "../screens/Main/TabScreenTasks";
 
 const Tab = createBottomTabNavigator();
 
@@ -52,7 +52,7 @@ export default function TabsNavigation({ navigation }) {
       />
       <Tab.Screen
         name="Browse Tasks"
-        component={BrowseTasks}
+        component={TabScreenTasks}
         options={{
           tabBarIcon: ({ color, size }) => {
             return <EvilIcons name="search" size={size} color={color} />;
@@ -79,7 +79,7 @@ export default function TabsNavigation({ navigation }) {
       />
       <Tab.Screen
         name="Messages"
-        component={HomePage}
+        component={UploadProfile}
         options={{
           tabBarIcon: ({ color, size }) => {
             return <EvilIcons name="comment" size={size} color={color} />;

@@ -1,6 +1,14 @@
-import { Button, Image, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Button,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import firebaseApp from "../../constants/firebase/firebase";
 import { AuthContext } from "../../store/authContext";
@@ -12,10 +20,14 @@ import {
   setDoc,
   doc,
 } from "firebase/firestore";
+import { fonts } from "../../constants/fonts";
+import TextInputWithLabel from "../../components/ui/TextInputWithLabel";
+import { SafeAreaView } from "react-native-safe-area-context";
 const db = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
 const UploadProfile = () => {
   const ctx = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
   const [image, setImage] = React.useState();
   const [status, requestPermission] = ImagePicker.useMediaLibraryPermissions();
   const usersRef = ref(
@@ -24,16 +36,18 @@ const UploadProfile = () => {
   );
 
   const pick = async () => {
+    const ctx = useContext(AuthContext);
     const uploadImage = async (uri: any) => {
       const response = await fetch(uri);
       const blob = await response.blob();
-
+      setLoading(true);
       uploadBytes(usersRef, blob)
         .then((snap) => {
           return getDownloadURL(snap.ref);
         })
         .then((downloadUrl: string) => {
           setImage(downloadUrl);
+          ctx.changeUserData({ profilePic: downloadUrl });
           return setDoc(
             doc(db, "users", ctx.user.uid),
             {
@@ -43,9 +57,11 @@ const UploadProfile = () => {
           );
         })
         .then((res) => {
+          setLoading(false);
           console.log(res);
         })
         .catch((error) => {
+          setLoading(false);
           console.log(error);
         });
     };
@@ -56,29 +72,34 @@ const UploadProfile = () => {
   };
   console.log(ctx.user.uid);
 
+  if (loading) {
+    return <ActivityIndicator size="large" />;
+  }
   return (
-    <View style={{ margin: 30, flex: 1 }}>
-      <Button2 backgroundColor="green" iconName="image" onPress={pick}>
-        Pick Image
-      </Button2>
-      <Text>uploadProfile</Text>
-      <View
+    <SafeAreaView style={{ margin: 30, flex: 1 }}>
+      <Pressable
+        onPress={pick}
         style={{
-          width: 50,
-          height: 50,
-          borderRadius: 100,
-          borderWidth: 1,
+          width: 100,
+          height: 100,
+          borderRadius: 50,
+          borderWidth: 2,
+          alignSelf: "center",
         }}>
-        {!!Image && (
-          <Image
-            source={{
-              uri: image,
-            }}
-            style={{ width: 50, height: 50 }}
-          />
-        )}
-      </View>
-    </View>
+        <Image
+          source={
+            ctx.userData
+              ? { uri: ctx.userData.profilePic }
+              : require("./1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg")
+          }
+          style={{ width: 95, height: 95, borderRadius: 50 }}
+        />
+      </Pressable>
+      <TextInputWithLabel>Name</TextInputWithLabel>
+      <Button2 iconName="save" iconColor="white" backgroundColor="black">
+        Save
+      </Button2>
+    </SafeAreaView>
   );
 };
 
