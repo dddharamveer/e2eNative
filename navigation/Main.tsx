@@ -7,6 +7,9 @@ import CreateTask from "../screens/Main/CreateTask";
 import UserInput from "../screens/Main/UserInput";
 import uploadProfile from "../screens/Main/uploadProfile";
 import UploadProfile from "../screens/Main/uploadProfile";
+import FilterScreen from "../screens/Main/FilterScreen";
+import { Colors } from "../constants/Colors";
+import { fonts } from "../constants/fonts";
 
 const stack = createNativeStackNavigator();
 
@@ -26,9 +29,23 @@ export default function Main() {
         <stack.Screen
           name="CreateTask"
           component={CreateTask}
-          options={{ animation: "slide_from_bottom" }}
+          options={{ animation: "slide_from_bottom", headerShown: true }}
         />
         <stack.Screen name="Profile" component={UploadProfile} />
+        <stack.Screen
+          name="Filter"
+          component={FilterScreen}
+          options={{
+            animation: "slide_from_bottom",
+            headerShown: true,
+            headerBackVisible: false,
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              color: Colors.secondary,
+              fontFamily: fonts.extrabold,
+            },
+          }}
+        />
       </stack.Navigator>
     );
   };
