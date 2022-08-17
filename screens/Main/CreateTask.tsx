@@ -6,6 +6,7 @@ import {
     Switch,
     Button,
     Pressable,
+    ScrollView,
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -18,6 +19,7 @@ import {
     addDoc,
     serverTimestamp,
 } from "firebase/firestore";
+import { Feather, Entypo } from "@expo/vector-icons";
 import firebaseApp from "../../constants/firebase/firebase";
 
 import { AuthContext } from "../../store/authContext";
@@ -49,6 +51,18 @@ const CreateTask = ({ navigation }) => {
     const [isEnabled, setIsEnabled] = useState(false);
     const [userInfo, setUserInfo] = useState();
     const [date, setDate] = useState(new Date());
+    const [removalTask, setRemovalTask] = useState(false);
+    const [onDate, setOnDate] = useState({
+        ondate: true,
+        beforedate: false,
+        flexible: false,
+    });
+    const [time, setTime] = useState({
+        morning: true,
+        midday: false,
+        afternoon: false,
+        evening: false,
+    });
 
     const ctx = useContext(AuthContext);
 
@@ -99,9 +113,10 @@ const CreateTask = ({ navigation }) => {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
-            {/* <Text style={styles.add}>+ Add must-haves</Text>
-                <View style={[styles.inner]}>
+        <ScrollView>
+            <SafeAreaView style={styles.container}>
+                {/* <Text style={styles.add}>+ Add must-haves</Text>
+        <View style={[styles.inner]}>
                     <Text>Can this task be completed remotely?</Text>
                     <Switch
                         thumbColor={isEnabled ? Colors.secondary : "#f4f3f4"}
@@ -110,124 +125,278 @@ const CreateTask = ({ navigation }) => {
                         value={isEnabled}
                     />
                 </View> */}
-            <Text style={styles.title}>Title & Date</Text>
-            <View style={styles.innerContainer}>
-                {/* <Text style={{ color: "red" }}>0 / 10+</Text> */}
-                <Text style={styles.subTitle}>
-                    SHORTLY DEFINE. WHAT NEED TO BE DONE?
-                </Text>
-                <TextInput
-                    placeholder="eg. Clean my 2 bedroom apartment"
-                    style={styles.input}
-                    onChangeText={(text) => {
-                        setData((prev) => ({ ...prev, title: text }));
-                    }}
-                />
-            </View>
-
-            <View>
-                <Text style={styles.subTitle}>WHEN YOU NEED TO BE DONE?</Text>
-                {/* <Button2
-                    onPress={showDatepicker}
-                    iconName="calendar"
-                    backgroundColor="black"
-                    iconColor="white">
-                    Date Picker
-                </Button2> */}
-                <Pressable onPress={showDatepicker}>
-                    <Text
-                        style={[
-                            styles.input,
-                            {
-                                height: 50,
-                                textAlign: "center",
-                                textAlignVertical: "center",
-                                fontSize: 22,
-                            },
-                        ]}>
-                        {getFullDate(date)}
+                <Text style={styles.title}>Title & Date</Text>
+                <View style={styles.innerContainer}>
+                    {/* <Text style={{ color: "red" }}>0 / 10+</Text> */}
+                    <Text style={styles.subTitle}>
+                        SHORTLY DEFINE. WHAT NEED TO BE DONE?
                     </Text>
-                </Pressable>
+                    <TextInput
+                        placeholder="eg. Clean my 2 bedroom apartment"
+                        style={styles.input}
+                        onChangeText={(text) => {
+                            setData((prev) => ({ ...prev, title: text }));
+                        }}
+                    />
+                </View>
+
+                <View>
+                    <Text style={styles.subTitle}>
+                        WHEN YOU NEED TO BE DONE?
+                    </Text>
+                    <Pressable onPress={showDatepicker}>
+                        <Text
+                            style={[
+                                styles.input,
+                                {
+                                    height: 50,
+                                    textAlign: "center",
+                                    textAlignVertical: "center",
+                                    fontSize: 22,
+                                },
+                            ]}>
+                            {getFullDate(date)}
+                        </Text>
+                    </Pressable>
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            justifyContent: "space-evenly",
+                            marginTop: 20,
+                        }}>
+                        <Button3
+                            text={"on date"}
+                            color={onDate["ondate"] ? "white" : "black"}
+                            backgroundColor={
+                                onDate["ondate"] ? "#3F3D56" : "transparent"
+                            }
+                            borderColor="#3F3D56"
+                            onPress={() =>
+                                setOnDate((prev) => ({
+                                    ...prev,
+                                    ondate: true,
+                                    beforedate: false,
+                                    flexible: false,
+                                }))
+                            }
+                        />
+                        <Button3
+                            text="Before Date"
+                            color={onDate["beforedate"] ? "white" : "black"}
+                            backgroundColor={
+                                onDate["beforedate"] ? "#3F3D56" : "transparent"
+                            }
+                            borderColor="black"
+                            onPress={() =>
+                                setOnDate((prev) => ({
+                                    ...prev,
+                                    ondate: false,
+                                    beforedate: true,
+                                    flexible: false,
+                                }))
+                            }
+                        />
+                        <Button3
+                            text={"flexible"}
+                            borderColor="black"
+                            color={onDate["flexible"] ? "white" : "black"}
+                            backgroundColor={
+                                onDate["flexible"] ? "#3F3D56" : "transparent"
+                            }
+                            onPress={() =>
+                                setOnDate((prev) => ({
+                                    ...prev,
+                                    ondate: false,
+                                    beforedate: false,
+                                    flexible: true,
+                                }))
+                            }
+                        />
+                    </View>
+                </View>
+                <View style={styles.innerContainer}>
+                    <Text style={styles.subTitle}>TIME</Text>
+                    <View style={styles.timeView}>
+                        <Button3
+                            color={time["morning"] ? "white" : "black"}
+                            backgroundColor={
+                                time["morning"] ? "#3F3D56" : "transparent"
+                            }
+                            text="Morning"
+                            time={"BEFORE 10AM"}
+                            icon={
+                                <Feather
+                                    name="sunrise"
+                                    size={24}
+                                    color={time["morning"] ? "white" : "black"}
+                                />
+                            }
+                            onPress={() =>
+                                setTime((prev) => ({
+                                    ...prev,
+                                    morning: true,
+                                    midday: false,
+                                    afternoon: false,
+                                    evening: false,
+                                }))
+                            }
+                        />
+                        <Button3
+                            text="Midday"
+                            time={"10AM - 2PM"}
+                            icon={
+                                <Feather
+                                    name="sun"
+                                    size={24}
+                                    color={time["midday"] ? "white" : "black"}
+                                />
+                            }
+                            onPress={() =>
+                                setTime((prev) => ({
+                                    ...prev,
+                                    morning: false,
+                                    midday: true,
+                                    afternoon: false,
+                                    evening: false,
+                                }))
+                            }
+                            color={time["midday"] ? "white" : "black"}
+                            backgroundColor={
+                                time["midday"] ? "#3F3D56" : "transparent"
+                            }
+                        />
+                        <Button3
+                            text="Afternoon"
+                            time={"2PM - 6PM"}
+                            icon={
+                                <Feather
+                                    name="sunset"
+                                    size={24}
+                                    color={
+                                        time["afternoon"] ? "white" : "black"
+                                    }
+                                />
+                            }
+                            onPress={() =>
+                                setTime((prev) => ({
+                                    ...prev,
+                                    morning: false,
+                                    midday: false,
+                                    afternoon: true,
+                                    evening: false,
+                                }))
+                            }
+                            color={time["afternoon"] ? "white" : "black"}
+                            backgroundColor={
+                                time["afternoon"] ? "#3F3D56" : "transparent"
+                            }
+                        />
+                        <Button3
+                            text="Evening"
+                            time={"AFTER 6PM"}
+                            icon={
+                                <Entypo
+                                    name="moon"
+                                    size={24}
+                                    color={time["evening"] ? "white" : "black"}
+                                />
+                            }
+                            onPress={() =>
+                                setTime((prev) => ({
+                                    ...prev,
+                                    morning: false,
+                                    midday: false,
+                                    afternoon: false,
+                                    evening: true,
+                                }))
+                            }
+                            color={time["evening"] ? "white" : "black"}
+                            backgroundColor={
+                                time["evening"] ? "#3F3D56" : "transparent"
+                            }
+                        />
+                    </View>
+                </View>
+
+                <Text style={styles.title}>Where</Text>
+                <View style={styles.innerContainer}>
+                    <Text style={styles.subTitle}>IS THIS A REMOVAL TASK?</Text>
+                    <View
+                        style={{
+                            flexDirection: "row",
+                        }}>
+                        <Button3
+                            text={"Yes"}
+                            color={removalTask ? "white" : "black"}
+                            backgroundColor={
+                                removalTask ? "#3F3D56" : "transparent"
+                            }
+                            onPress={() => setRemovalTask(true)}
+                        />
+                        <Button3
+                            text={"No"}
+                            color={!removalTask ? "white" : "black"}
+                            backgroundColor={
+                                !removalTask ? "#3F3D56" : "transparent"
+                            }
+                            onPress={() => setRemovalTask(false)}
+                        />
+                    </View>
+                </View>
+                <View>
+                    <Text>LOCATION</Text>
+                    <SelectDropdown
+                        data={location}
+                        onSelect={(selectedItem, index) => {
+                            setData((prev) => ({
+                                ...prev,
+                                location: selectedItem,
+                            }));
+                        }}
+                        buttonTextAfterSelection={(selectedItem, index) => {
+                            // text represented after item is selected
+                            // if data array is an array of objects then return selectedItem.property to render after item is selected
+                            return selectedItem;
+                        }}
+                        search
+                        rowStyle={{ borderWidth: 0, backgroundColor: "white" }}
+                        buttonTextStyle={{ fontFamily: fonts.bold }}
+                        buttonStyle={{
+                            width: "100%",
+                            borderRadius: 10,
+                            backgroundColor: "white",
+                            marginVertical: 25,
+                            elevation: 4,
+                        }}
+                    />
+                </View>
+                {/* </View> */}
+                <TextInput
+                    onChangeText={(text) => {
+                        setData((prev) => ({ ...prev, Budget: text }));
+                    }}
+                    placeholder="Budget"
+                />
                 <View
                     style={{
                         flexDirection: "row",
-                        justifyContent: "space-evenly",
-                        marginTop: 10,
+                        justifyContent: "space-between",
                     }}>
                     <Button3
-                        text={"on date"}
-                        color="white"
+                        text="Back"
+                        color={"white"}
                         backgroundColor="#3F3D56"
                         borderColor="#3F3D56"
                     />
-                    <Button3 text="Before Date" borderColor="black" />
-                    <Button3 text={"flexible"} borderColor="black" />
+                    <Button3
+                        text="next"
+                        color={"white"}
+                        backgroundColor="#1DBF73"
+                        borderColor="#1DBF73"
+                    />
                 </View>
-            </View>
-            <View style={styles.innerContainer}>
-                <Text style={styles.subTitle}>TIME</Text>
-                <View style={styles.timeView}>
-                    <Button3 text="Morning" />
-                    <Button3 text="Midday" />
-                    <Button3 text="Afternoon" />
-                    <Button3 text="Evening" />
-                </View>
-            </View>
-
-            <Text style={styles.title}>Where</Text>
-            <View style={styles.innerContainer}>
-                <Text style={styles.subTitle}>IS THIS A REMOVEL TASK?</Text>
-                <View
-                    style={{
-                        flexDirection: "row",
-                    }}>
-                    <Button3 text={"Yes"} />
-                    <Button3 text={"No"} />
-                </View>
-            </View>
-            <View>
-                <Text>LOCATION</Text>
-                <SelectDropdown
-                    data={location}
-                    onSelect={(selectedItem, index) => {
-                        setData((prev) => ({
-                            ...prev,
-                            location: selectedItem,
-                        }));
-                    }}
-                    buttonTextAfterSelection={(selectedItem, index) => {
-                        // text represented after item is selected
-                        // if data array is an array of objects then return selectedItem.property to render after item is selected
-                        return selectedItem;
-                    }}
-                    search
-                    rowStyle={{ borderWidth: 0, backgroundColor: "white" }}
-                    buttonTextStyle={{ fontFamily: fonts.bold }}
-                    buttonStyle={{
-                        width: "100%",
-                        borderRadius: 10,
-                        backgroundColor: "white",
-                        marginVertical: 25,
-                        elevation: 4,
-                    }}
-                />
-            </View>
-            {/* </View> */}
-            <TextInput
-                onChangeText={(text) => {
-                    setData((prev) => ({ ...prev, Budget: text }));
-                }}
-                placeholder="Budget"
-            />
-            <View
-                style={{
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                }}>
-                <Button3 text="Back" />
-                <Button3 text="next" />
-            </View>
-        </SafeAreaView>
+            </SafeAreaView>
+        </ScrollView>
     );
 };
 
@@ -239,9 +408,8 @@ const styles = StyleSheet.create({
         // justifyContent: "space-between",
     },
     title: {
-        fontSize: 18,
+        fontSize: 24,
         fontFamily: fonts.extrabold,
-        // fontWeight: "bold",
     },
     subTitle: {
         color: "#898080",
@@ -254,6 +422,7 @@ const styles = StyleSheet.create({
         // borderRadius: 5,
         fontSize: 16,
         padding: 5,
+        height: 50,
     },
     innerContainer: {
         marginTop: 10,
