@@ -23,9 +23,10 @@ import {
 import { fonts } from "../../constants/fonts";
 import TextInputWithLabel from "../../components/ui/TextInputWithLabel";
 import { SafeAreaView } from "react-native-safe-area-context";
+import LoadingComponent from "../../components/ui/LoadingComponent";
 const db = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
-const UploadProfile = () => {
+const UploadProfile = ({ navigation }) => {
   const ctx = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [image, setImage] = React.useState();
@@ -36,7 +37,6 @@ const UploadProfile = () => {
   );
 
   const pick = async () => {
-    const ctx = useContext(AuthContext);
     const uploadImage = async (uri: any) => {
       const response = await fetch(uri);
       const blob = await response.blob();
@@ -57,7 +57,6 @@ const UploadProfile = () => {
           );
         })
         .then((res) => {
-          setLoading(false);
           console.log(res);
         })
         .catch((error) => {
@@ -73,8 +72,20 @@ const UploadProfile = () => {
   console.log(ctx.user.uid);
 
   if (loading) {
-    return <ActivityIndicator size="large" />;
+    return <LoadingComponent />;
   }
+  const [name, setname] = useState("");
+  const another = doc(db, "users", ctx.user.uid);
+  const save = async () => {
+    try {
+      const senddata = await setDoc(another, { Name: name }, { merge: true });
+      console.log(senddata);
+
+      navigation.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <SafeAreaView style={{ margin: 30, flex: 1 }}>
       <Pressable
@@ -95,8 +106,17 @@ const UploadProfile = () => {
           style={{ width: 95, height: 95, borderRadius: 50 }}
         />
       </Pressable>
-      <TextInputWithLabel>Name</TextInputWithLabel>
-      <Button2 iconName="save" iconColor="white" backgroundColor="black">
+      <TextInputWithLabel
+        onChangeText={(text) => {
+          setname(text);
+        }}>
+        Name
+      </TextInputWithLabel>
+      <Button2
+        iconName="save"
+        onPress={save}
+        iconColor="white"
+        backgroundColor="black">
         Save
       </Button2>
     </SafeAreaView>

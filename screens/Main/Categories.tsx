@@ -118,11 +118,10 @@ const styless = StyleSheet.create({
   },
 });
 
-export const CategoriesScreen = ({navigation}) => {
+export const CategoriesScreen = ({ navigation }) => {
   return (
     <View
       style={{
-        backgroundColor: "white",
         flex: 1,
         flexDirection: "row",
         flexWrap: "wrap",
@@ -132,6 +131,7 @@ export const CategoriesScreen = ({navigation}) => {
           flexDirection: "row",
           width: "100%",
           alignItems: "center",
+          marginTop: 20,
           marginHorizontal: 25,
           marginBottom: 5,
         }}>
@@ -156,9 +156,9 @@ export const CategoriesScreen = ({navigation}) => {
       {categoriesList.map((item) => {
         return (
           <CategoriesButton
-          onPress={()=>{
-            navigation.navigate('CreateTask')
-          }}
+            onPress={() => {
+              navigation.navigate("CreateTask");
+            }}
             iconColor="white"
             size={24}
             key={item.mname}

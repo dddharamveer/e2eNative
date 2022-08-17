@@ -13,7 +13,7 @@ type AuthContextType = {
     Name: string;
     profilePic: string;
   };
-
+  changeUserData: ({ profilePic }: { profilePic: any }) => void;
   logout: () => void;
   isLoading: boolean;
 };
@@ -24,7 +24,7 @@ export const AuthContext = createContext<AuthContextType>({
     Name: "",
     profilePic: "",
   },
-
+  changeUserData: () => {},
   logout: () => {},
   isLoading: true,
 });
@@ -40,22 +40,28 @@ const AuthProvider: React.FC = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
-      userDa();
       setIsLoading(false);
     });
-
     return unsubscribe;
   }, []);
 
-  const userDa = async () => {
+  useEffect(() => {
+    FetchUserData();
+  }, [user]);
+
+  const FetchUserData = async () => {
     const data = await getUser();
     setUserData(data);
+  };
+
+  const changeUserData = ({ profilePic }: { profilePic: any }) => {
+    setUserData((prev: any) => ({ ...prev, profilePic }));
   };
 
   const value = {
     user,
     userData,
-
+    changeUserData,
     logout,
     isLoading,
   };

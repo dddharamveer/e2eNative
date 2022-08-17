@@ -41,7 +41,8 @@ export const Header = ({ navigation }) => {
     <SafeAreaView
       style={{
         backgroundColor: "white",
-        padding: 30,
+        paddingHorizontal: 25,
+        paddingVertical: 15,
         flexDirection: "row",
         justifyContent: "space-between",
       }}>

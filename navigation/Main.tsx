@@ -5,8 +5,8 @@ import TasksDetails from "../screens/Main/TasksDetails";
 import CreateTask from "../screens/Main/CreateTask";
 
 import UserInput from "../screens/Main/UserInput";
-import uploadProfile from "../screens/Main/uploadProfile";
-import UploadProfile from "../screens/Main/uploadProfile";
+import uploadProfile from "../screens/Main/UserProfile";
+
 import FilterScreen from "../screens/Main/FilterScreen";
 import { Colors } from "../constants/Colors";
 import { fonts } from "../constants/fonts";
@@ -29,9 +29,13 @@ export default function Main() {
         <stack.Screen
           name="CreateTask"
           component={CreateTask}
-          options={{ animation: "slide_from_bottom", headerShown: true }}
+          options={{
+            animation: "slide_from_bottom",
+            headerShown: true,
+            title: "Title & Date",
+          }}
         />
-        <stack.Screen name="Profile" component={UploadProfile} />
+        <stack.Screen name="Profile" component={uploadProfile} />
         <stack.Screen
           name="Filter"
           component={FilterScreen}

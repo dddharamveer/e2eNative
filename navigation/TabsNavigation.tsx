@@ -23,7 +23,7 @@ import {
 import MyTasks from "../screens/Main/MyTasks";
 import React, { Children, useEffect } from "react";
 import CreateTask from "../screens/Main/CreateTask";
-import UploadProfile from "../screens/Main/uploadProfile";
+import UploadProfile from "../screens/Main/UserProfile";
 import { getUser } from "../constants/firebase/dataQueries";
 import { Header } from "../components/Header";
 import { CategoriesScreen } from "../screens/Main/Categories";
@@ -31,7 +31,6 @@ import { CategoriesScreen } from "../screens/Main/Categories";
 import Notifications from "../screens/Main/Notifications";
 
 import TabScreenTasks from "../screens/Main/TabScreenTasks";
-
 
 const Tab = createBottomTabNavigator();
 
@@ -83,9 +82,7 @@ export default function TabsNavigation({ navigation }) {
       />
       <Tab.Screen
         name="Messages"
-
         component={Notifications}
-
         options={{
           tabBarIcon: ({ color, size }) => {
             return <EvilIcons name="comment" size={size} color={color} />;
