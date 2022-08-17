@@ -5,13 +5,15 @@ import { auth } from "../constants/firebase/auth";
 import { User } from "firebase/auth/react-native";
 
 type AuthContextType = {
-  user: User | null;
+  user: {
+    uid: string;
+  };
   logout: () => void;
   isLoading: boolean;
 };
 
 export const AuthContext = createContext<AuthContextType>({
-  user: null,
+  user: { uid: "" },
   logout: () => {},
   isLoading: true,
 });

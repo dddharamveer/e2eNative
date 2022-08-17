@@ -1,25 +1,36 @@
-import { StyleSheet, Text, View, ScrollView, Dimensions } from "react-native";
-import React from "react";
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  Dimensions,
+  Text,
+  TextInput,
+  KeyboardAvoidingView,
+} from "react-native";
+import React, { useContext, useEffect } from "react";
 import SortDropdown from "../../components/ui/SortDropdown";
+import BrowseTasks from "../../components/BrowseTasks";
+import Button2 from "../../components/ui/Button-2";
+import { EvilIcons } from "@expo/vector-icons";
+import { fonts } from "../../constants/fonts";
 
-import IconButton from "../../components/ui/IconButton";
-import { FontAwesome5 } from "@expo/vector-icons";
-
-const HomePage = () => {
-  const width1 = Dimensions.get("window").width;
-  console.log(width1);
-
+const HomePage = ({}) => {
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <SortDropdown />
-          <SortDropdown />
-          <SortDropdown />
-        </ScrollView>
-      </View>
+      {/* <View style={styles.header}>
+        <View style={{ flex: 1 / 2 }}>
+          <Button2 TextColor borderButton iconName="sort">
+            Sort by
+          </Button2>
+        </View>
+        <View style={{ flex: 1 / 2 }}>
+          <Button2 TextColor borderButton iconName="filter">
+            Filter
+          </Button2>
+        </View>
+      </View> */}
       <View style={styles.body}>
-        <Text>HomePage</Text>
+        <BrowseTasks />
       </View>
     </View>
   );
@@ -29,11 +40,14 @@ export default HomePage;
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "white",
     flex: 1,
-    backgroundColor: "#ffffff",
-    margin: 10,
-    borderRadius: 10,
   },
+  body: { flex: 1 },
+  header: {
+    padding: 10,
 
-  header: {},
+    backgroundColor: "#cac8c8",
+    flexDirection: "row",
+  },
 });
