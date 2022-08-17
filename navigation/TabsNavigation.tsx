@@ -27,7 +27,11 @@ import UploadProfile from "../screens/Main/uploadProfile";
 import { getUser } from "../constants/firebase/dataQueries";
 import { Header } from "../components/Header";
 import { CategoriesScreen } from "../screens/Main/Categories";
+
+import Notifications from "../screens/Main/Notifications";
+
 import TabScreenTasks from "../screens/Main/TabScreenTasks";
+
 
 const Tab = createBottomTabNavigator();
 
@@ -79,7 +83,9 @@ export default function TabsNavigation({ navigation }) {
       />
       <Tab.Screen
         name="Messages"
-        component={UploadProfile}
+
+        component={Notifications}
+
         options={{
           tabBarIcon: ({ color, size }) => {
             return <EvilIcons name="comment" size={size} color={color} />;
