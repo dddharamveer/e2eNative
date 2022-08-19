@@ -1,10 +1,10 @@
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
 import React from "react";
 import MessagesCard from "../../components/MessagesCard";
 
 var Notifications_messages: boolean = true;
 
-export default function Notifications() {
+export default function Notifications({ navigation }: { navigation: any }) {
   const noMessages = (
     <View style={styles.container}>
       <Text style={{ fontSize: 24 }}>No Notifications to show yet!</Text>
@@ -17,13 +17,11 @@ export default function Notifications() {
   return (
     <ScrollView>
       <View style={{ flex: 1 }}>
-        <MessagesCard />
-        <MessagesCard />
-        <MessagesCard />
-        <MessagesCard />
-        <MessagesCard />
-        <MessagesCard />
-        <MessagesCard />
+        <MessagesCard
+          openChat={() => {
+            navigation.navigate("Chat");
+          }}
+        />
       </View>
     </ScrollView>
   );

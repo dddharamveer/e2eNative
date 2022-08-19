@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Chat from "../screens/Main/ChatScreen";
 import CreateTask from "../screens/Main/CreateTaskScreen";
 
 import FilterScreen from "../screens/Main/FilterScreen";
@@ -41,6 +42,11 @@ export default function MainNavigation() {
           headerBackVisible: false,
           headerTitleAlign: "center",
         }}
+      />
+      <Stack.Screen
+        name="Chat"
+        component={Chat}
+        options={{ animation: "slide_from_bottom" }}
       />
     </Stack.Navigator>
   );

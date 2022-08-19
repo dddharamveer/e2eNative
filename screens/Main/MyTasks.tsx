@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import React, { useState } from "react";
 import Task from "../../components/Task";
+import Colors from "../../constants/Colors";
 
 const MyTasks = () => {
   const [isEnabled, setIsEnabled] = useState(true);
@@ -9,7 +10,10 @@ const MyTasks = () => {
     <View style={styles.container}>
       <View style={styles.inner}>
         <Pressable
-          style={[styles.button, isEnabled && { backgroundColor: "green" }]}
+          style={[
+            styles.button,
+            isEnabled && { backgroundColor: Colors.light.background },
+          ]}
           onPress={() => setIsEnabled(true)}
         >
           <Text style={isEnabled ? { color: "white" } : { color: "#D9D9D9" }}>
@@ -17,7 +21,10 @@ const MyTasks = () => {
           </Text>
         </Pressable>
         <Pressable
-          style={[styles.button, !isEnabled && { backgroundColor: "green" }]}
+          style={[
+            styles.button,
+            !isEnabled && { backgroundColor: Colors.light.background },
+          ]}
           onPress={() => setIsEnabled(false)}
         >
           <Text style={!isEnabled ? { color: "white" } : { color: "#D9D9D9" }}>
@@ -56,7 +63,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "space-evenly",
     flexDirection: "row",
-    borderColor: "green",
+    borderColor: Colors.light.background,
     borderWidth: 2,
     borderRadius: 35,
     marginBottom: 25,

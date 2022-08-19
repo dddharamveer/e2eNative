@@ -9,8 +9,7 @@ import {
   Pressable,
 } from "react-native";
 import React from "react";
-import TextInputUi from "../../components/ui/TextInput";
-import { auth } from "../../constants/firebase/auth";
+
 import {
   PhoneAuthProvider,
   getAuth,
@@ -22,53 +21,55 @@ import {
   FirebaseRecaptchaVerifierModal,
   FirebaseRecaptchaBanner,
 } from "expo-firebase-recaptcha";
-import firebaseApp from "../../constants/firebase/firebase";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { fonts } from "../../constants/fonts";
+
 import ImageContainer from "../../components/Container-Rounded-Image";
+import { auth, db } from "../../Firebase/firebaseConfig";
+import { AuthStackScreenProps } from "../../types";
+import Colors from "../../constants/Colors";
 const app = getApp();
 
-const PhoneAuth = ({ navigation }) => {
-  const recapthchaVerifier = React.useRef(null);
-  const [phoneNumber, setPhoneNumber] = React.useState();
+const PhoneAuthScreen = ({
+  navigation,
+}: AuthStackScreenProps<"PhoneAuthScreen">) => {
+  const recapthchaVerifier = React.useRef<any>();
+  const [phoneNumber, setPhoneNumber] = React.useState<any>();
   const [verificationId, setVerificationId] = React.useState();
 
   const [code, setCode] = React.useState();
 
-  const [message, showMessage] = React.useState();
+  const [message, showMessage] = React.useState<any>();
 
   const attemtInvisibleVerification = false;
   const top = (
     <FirebaseRecaptchaVerifierModal
       ref={recapthchaVerifier}
-      firebaseConfig={firebaseApp.options}
+      firebaseConfig={app.options}
     />
   );
 
   return (
     <ImageContainer top={top}>
-      <View style={{}}>
+      <View>
         <Text
           style={{
             fontSize: 23,
-            fontFamily: fonts.bold,
-          }}>
+          }}
+        >
           Enter your
         </Text>
         <Text
           style={{
             fontSize: 23,
-
-            fontFamily: fonts.bold,
-          }}>
+          }}
+        >
           mobile number
         </Text>
         <Text
           style={{
             color: "#9e9e9eff",
-            fontFamily: fonts.bold,
             marginVertical: 15,
-          }}>
+          }}
+        >
           We will send you confirmation code
         </Text>
       </View>
@@ -78,7 +79,8 @@ const PhoneAuth = ({ navigation }) => {
             fontSize: 30,
             color: "#9e9e9eff",
             marginRight: 10,
-          }}>
+          }}
+        >
           +91
         </Text>
         <TextInput
@@ -100,45 +102,46 @@ const PhoneAuth = ({ navigation }) => {
           justifyContent: "center",
           alignItems: "center",
           height: 50,
-          backgroundColor: "#009473",
+          backgroundColor: Colors.light.background,
           borderRadius: 10,
           marginVertical: 20,
         }}
         onPress={async () => {
           try {
             const phoneProvider = new PhoneAuthProvider(auth);
-            const verficationId = await phoneProvider.verifyPhoneNumber(
+            const verficationId: any = await phoneProvider.verifyPhoneNumber(
               phoneNumber,
               recapthchaVerifier.current,
             );
             setVerificationId(verficationId);
 
-            navigation.navigate("Verification", {
+            navigation.navigate("OtpVerifictaion", {
               verificationId: verficationId,
             });
-          } catch (err) {
+          } catch (err: any) {
             showMessage({ text: `Error: ${err.message}`, color: "red" });
           }
-        }}>
-        <Text style={{ color: "white", fontFamily: fonts.bold, fontSize: 17 }}>
-          Next
-        </Text>
+        }}
+      >
+        <Text style={{ color: "white", fontSize: 17 }}>Next</Text>
       </Pressable>
 
       {message ? (
         <TouchableOpacity
           style={[
             StyleSheet.absoluteFill,
-            { backgroundColor: 0xffffffee, justifyContent: "center" },
+            { backgroundColor: "0xffffffee", justifyContent: "center" },
           ]}
-          onPress={() => showMessage(undefined)}>
+          onPress={() => showMessage(undefined)}
+        >
           <Text
             style={{
               color: message.color || "blue",
               fontSize: 17,
               textAlign: "center",
               margin: 20,
-            }}>
+            }}
+          >
             {message.text}
           </Text>
         </TouchableOpacity>
@@ -148,6 +151,4 @@ const PhoneAuth = ({ navigation }) => {
   );
 };
 
-export default PhoneAuth;
-
-const styles = StyleSheet.create({});
+export default PhoneAuthScreen;

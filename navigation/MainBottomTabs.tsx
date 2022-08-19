@@ -19,6 +19,7 @@ import {
 } from "../types";
 import BrowseTasksScreen from "../screens/Main/BrowseTasksScreen";
 import AccountScreen from "../screens/Main/AccountScreen";
+import Colors from "../constants/Colors";
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
@@ -30,7 +31,7 @@ export default function MainBottomTabs({
       screenOptions={{
         tabBarInactiveTintColor: "black",
         tabBarLabelStyle: { paddingBottom: 2 },
-        tabBarActiveTintColor: "green",
+        tabBarActiveTintColor: Colors.light.background,
       }}
     >
       <Tab.Screen
@@ -85,6 +86,7 @@ export default function MainBottomTabs({
           tabBarIcon: ({ color, size }) => {
             return <EvilIcons name="user" size={size} color={color} />;
           },
+          headerShown: false,
         }}
       />
     </Tab.Navigator>

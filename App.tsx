@@ -18,7 +18,7 @@ export default function App() {
         <AuthProvider>
           <Navigation colorScheme={colorScheme} />
         </AuthProvider>
-        <StatusBar />
+        <StatusBar style="dark" />
       </SafeAreaProvider>
     );
   }

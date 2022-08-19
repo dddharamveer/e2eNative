@@ -5,7 +5,7 @@ const ImageContainer = ({
   top,
   children,
 }: {
-  top?: string;
+  top?: any;
   children: React.ReactNode;
 }) => {
   return (

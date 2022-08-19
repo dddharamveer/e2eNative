@@ -34,6 +34,7 @@ export type MainStackParamList = {
   CreateTask: undefined;
   Profile: undefined;
   FilterScreen: undefined;
+  Chat: undefined;
 };
 
 export type MainStackScreenProps<Screen extends keyof MainStackParamList> =
@@ -56,6 +57,8 @@ export type AuthStackParamList = {
   Root: undefined;
   LoginWithEmail: undefined;
   SignUpWithEmail: undefined;
+  PhoneAuthScreen: undefined;
+  OtpVerifictaion: { verificationId: any } | undefined;
 };
 
 export type AuthStackScreenProps<Screen extends keyof AuthStackParamList> =

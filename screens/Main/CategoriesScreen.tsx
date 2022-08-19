@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, Pressable } from "react-native";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MainTabScreenProps } from "../../types";
+import Colors from "../../constants/Colors";
 
 const CustomButtonIcon = "plus";
 
@@ -99,7 +100,7 @@ const styless = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "green",
+    backgroundColor: Colors.light.background,
     height: 70,
     width: 70,
     borderRadius: 70 / 2,
@@ -131,7 +132,11 @@ export const CategoriesScreen = ({
           marginBottom: 5,
         }}
       >
-        <MaterialCommunityIcons name="pencil-box" size={32} color="green" />
+        <MaterialCommunityIcons
+          name="pencil-box"
+          size={32}
+          color={Colors.light.background}
+        />
         <Text style={{ fontSize: 18, marginLeft: 10 }}>
           Post a task & get offers
         </Text>

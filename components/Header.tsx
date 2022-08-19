@@ -6,6 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { AuthContext } from "../store/authContext";
 import { MainTabScreenProps } from "../types";
+import { FontAwesome } from "@expo/vector-icons";
 
 export const Header = ({
   navigation,
@@ -24,13 +25,16 @@ export const Header = ({
     >
       <View style={{ flexDirection: "column" }}>
         <Text
-          style={{
-            fontSize: 15,
-          }}
+          style={[
+            {
+              fontSize: 16,
+              fontFamily: "Light-1",
+            },
+          ]}
         >
           {ctx.userData && ctx.userData.Name}
         </Text>
-        <Text style={{ fontSize: 20 }}>Good Morning !</Text>
+        <Text style={[{ fontSize: 20 }, styles.font]}>Good Morning !</Text>
       </View>
       <Pressable
         onPress={() => {
@@ -62,5 +66,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
+  },
+  font: {
+    fontFamily: "Main-1",
   },
 });

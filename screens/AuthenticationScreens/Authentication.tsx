@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
   titleText: {
     color: "black",
     fontSize: 32,
+    fontFamily: "Main-1",
   },
 
   forgotpasswordText: {
