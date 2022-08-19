@@ -3,13 +3,14 @@ import Bottom from "./TabsNavigation";
 
 import TasksDetails from "../screens/Main/TasksDetails";
 import CreateTask from "../screens/Main/CreateTask";
-
+import Notifications from "../screens/Main/Notifications";
 import UserInput from "../screens/Main/UserInput";
 import uploadProfile from "../screens/Main/uploadProfile";
 import UploadProfile from "../screens/Main/uploadProfile";
 import FilterScreen from "../screens/Main/FilterScreen";
 import { Colors } from "../constants/Colors";
 import { fonts } from "../constants/fonts";
+import Chat from "../screens/Main/Chat";
 
 const stack = createNativeStackNavigator();
 
@@ -32,6 +33,16 @@ export default function Main() {
           options={{ animation: "slide_from_bottom", headerShown: true }}
         />
         <stack.Screen name="Profile" component={UploadProfile} />
+        <stack.Screen
+          name="Notifications"
+          component={Notifications}
+          options={{ animation: "slide_from_bottom", headerShown: true }}
+        />
+        <stack.Screen
+          name="Chat"
+          component={Chat}
+          options={{ animation: "slide_from_bottom", headerShown: true }}
+        />
         <stack.Screen
           name="Filter"
           component={FilterScreen}

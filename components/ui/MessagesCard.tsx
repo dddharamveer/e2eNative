@@ -1,23 +1,33 @@
-import { StyleSheet, Text, View , Image} from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View , Image, Pressable} from 'react-native'
+import React, { FC } from 'react'
 
-const MessagesCard = () => {
+type MessagesCard={
+  openChat?: ()=> void;
+}
+
+const MessagesCard: React.FC<MessagesCard> = ({openChat}) => {
   return (
-    <View style={styles.container}>
+      <Pressable
+        onPress={openChat}
+        style={({ pressed }) => [
+          styles.container,
+          pressed && styles.pressed,
+        ]} 
+      >
         <Image
         style={styles.profileImg}
         source={{
-          uri: 'https://reactnative.dev/img/tiny_logo.png',
+          uri: 'https://p.kindpng.com/picc/s/99-997900_headshot-silhouette-person-placeholder-hd-png-download.png',
         }}
         />
 
         <Text style={{flex:1, flexWrap:"wrap", marginLeft:20, marginRight:10}}>
-            <Text style={{fontWeight:"700"}}>jasdeep kaur</Text> commented on <Text style={{fontWeight:"700"}}>'Move pot plants to new house'</Text>
+            <Text style={{fontWeight:"700"}}>Jasdeep kaur</Text> commented on <Text style={{fontWeight:"700"}}>'Move pot plants to new house'</Text>
         </Text>
         <Text style={{alignSelf:"flex-end",color:"grey"}}> 
         10 mins 
         </Text>
-    </View>
+      </Pressable>
   )
 }
 
@@ -39,5 +49,9 @@ const styles = StyleSheet.create({
         height:50,
         borderRadius:50/2,
     },
+    pressed:{
+      backgroundColor:"grey",
+      opacity:0.7
+    }
 
 })
