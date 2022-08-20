@@ -20,7 +20,7 @@ export const Header = ({
         backgroundColor: "white",
         paddingHorizontal: 20,
         paddingBottom: 10,
-        paddingTop: 35,
+        paddingTop: 20,
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
@@ -33,8 +33,8 @@ export const Header = ({
         <Text
           style={[
             {
-              fontSize: 22,
-              fontFamily: "Inter-Regular",
+              fontSize: 24,
+              fontFamily: "Inter-SemiBold",
             },
           ]}
         >

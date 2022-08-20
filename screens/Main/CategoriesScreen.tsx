@@ -11,6 +11,7 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MainTabScreenProps } from "../../types";
 import Colors from "../../constants/Colors";
+import Button2 from "../../components/UI/Button-2";
 
 const CustomButtonIcon = "plus";
 
@@ -39,18 +40,18 @@ const categoriesList = [
     label: "Assembly",
     mname: "tools",
   },
-  {
-    label: "Business",
-    mname: "briefcase",
-  },
-  {
-    label: "Technical Assistance",
-    mname: "desktop-mac",
-  },
-  {
-    label: "Appliance",
-    mname: "washing-machine",
-  },
+  // {
+  //   label: "Business",
+  //   mname: "briefcase",
+  // },
+  // {
+  //   label: "Technical Assistance",
+  //   mname: "desktop-mac",
+  // },
+  // {
+  //   label: "Appliance",
+  //   mname: "washing-machine",
+  // },
 ];
 
 type CategoriesButton = {
@@ -87,6 +88,8 @@ const CategoriesButton: React.FC<CategoriesButton> = ({
           style={{
             textAlign: "center",
             marginVertical: 5,
+            fontSize: 13,
+            fontFamily: "Inter-Light",
           }}
         >
           {label}
@@ -100,21 +103,25 @@ export default CategoriesButton;
 const width = 100 / 3;
 const styless = StyleSheet.create({
   main: {
+    backgroundColor: "white",
+    borderRadius: 10,
     width: `${width}%`,
-    marginVertical: 15,
+
     alignItems: "center",
+    padding: 15,
   },
   container: {
+    height: 60,
+    width: 60,
+    borderRadius: 40,
+    elevation: 4,
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: Colors.light.background,
-    height: 70,
-    width: 70,
-    borderRadius: 70 / 2,
-    elevation: 4,
   },
   pressed: {
     opacity: 0.7,
+    backgroundColor: Colors.light.background,
   },
 });
 
@@ -122,12 +129,25 @@ export const CategoriesScreen = ({
   navigation,
 }: MainTabScreenProps<"CategoriesScreen">) => {
   return (
-    <ScrollView
-      contentContainerStyle={{
-        flexDirection: "row",
-        flexWrap: "wrap",
-      }}
-    >
+    <ScrollView>
+      <View
+        style={{
+          backgroundColor: "white",
+          padding: 15,
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
+        <MaterialCommunityIcons
+          name="pen"
+          size={26}
+          color={Colors.light.background}
+          style={{ marginRight: 10 }}
+        />
+        <Text style={{ fontSize: 15, fontFamily: "Inter-Bold" }}>
+          Create Task and Place Text here
+        </Text>
+      </View>
       <ScrollView
         contentContainerStyle={{
           backgroundColor: "white",
@@ -180,45 +200,38 @@ export const CategoriesScreen = ({
       <View
         style={{
           flexDirection: "row",
-          width: "100%",
-          alignItems: "center",
-          marginTop: 20,
-          marginHorizontal: 25,
-          marginBottom: 5,
-        }}
-      >
-        <MaterialCommunityIcons
-          name="pencil-box"
-          size={32}
-          color={Colors.light.background}
-        />
-        <Text style={{ fontSize: 18, marginLeft: 10 }}>
-          Post a task & get offers
-        </Text>
-      </View>
-      <Text
-        style={{
-          marginHorizontal: 25,
-          marginBottom: 20,
-        }}
-      >
-        Receive & review offers from Taskers who can help
-      </Text>
+          flexWrap: "wrap",
+          marginHorizontal: 15,
+          borderRadius: 40,
 
-      {categoriesList.map((item) => {
-        return (
-          <CategoriesButton
-            onPress={() => {
-              navigation.navigate("CreateTask");
-            }}
-            iconColor="white"
-            size={24}
-            key={item.mname}
-            mname={item.mname}
-            label={item.label}
-          />
-        );
-      })}
+          backgroundColor: "white",
+        }}
+      >
+        {categoriesList.map((item) => {
+          return (
+            <CategoriesButton
+              onPress={() => {
+                navigation.navigate("CreateTask");
+              }}
+              iconColor={Colors.light.background}
+              size={24}
+              key={item.mname}
+              mname={item.mname}
+              label={item.label}
+            />
+          );
+        })}
+      </View>
+      <View style={{ marginHorizontal: 15, marginVertical: 20 }}>
+        <Button2
+          iconColor="black"
+          iconName="arrow-down"
+          backgroundColor="white"
+          TextColor
+        >
+          More Categories
+        </Button2>
+      </View>
     </ScrollView>
   );
 };

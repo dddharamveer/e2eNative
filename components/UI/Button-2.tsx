@@ -27,7 +27,7 @@ const Button2 = ({
 }) => {
   return (
     <Pressable
-      android_ripple={{ color: "#9f9b9bff", radius: 160 }}
+      android_ripple={{ color: "#9f9b9bff" }}
       style={[
         {
           flexDirection: "row",

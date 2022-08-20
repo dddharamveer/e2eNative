@@ -66,7 +66,8 @@ export default function MainBottomTabs({
         name="BrowseTasks"
         component={BrowseTasksScreen}
         options={{
-          title: "Browse",
+          title: "Browse Tasks",
+          headerTitleStyle: { fontFamily: "Inter-Regular", fontSize: 20 },
           tabBarIcon: ({ color, size, focused }) => {
             return focused ? (
               <Ionicons name="search-circle" size={27} color={color} />
@@ -75,7 +76,7 @@ export default function MainBottomTabs({
             );
           },
           headerRight: () => (
-            <Ionicons name="search" style={{ marginRight: 20 }} size={30} />
+            <Ionicons name="search" style={{ marginRight: 20 }} size={23} />
           ),
         }}
       />

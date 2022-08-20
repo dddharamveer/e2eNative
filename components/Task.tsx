@@ -2,6 +2,7 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { EvilIcons, FontAwesome5 } from "@expo/vector-icons";
 import { getFullDate } from "../constants/Formating";
+import Colors from "../constants/Colors";
 
 const Task = ({
   title,
@@ -94,7 +95,7 @@ const Task = ({
         >
           <View
             style={{
-              backgroundColor: "#4A73E8",
+              backgroundColor: Colors.light.background,
               paddingVertical: 7,
               paddingHorizontal: 12,
               borderRadius: 15,

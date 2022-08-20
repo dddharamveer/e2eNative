@@ -31,6 +31,7 @@ import TextInputWithLabel from "../../components/TextInputWithLabel";
 import LoadingScreen from "../../components/UI/LoadingScreen";
 import { db } from "../../Firebase/firebaseConfig";
 import { MainStackScreenProps } from "../../types";
+import Colors from "../../constants/Colors";
 
 const location = [
   "Habowal,Ludhiana",
@@ -160,7 +161,9 @@ const CreateTaskScreen = ({
           <Button3
             text={"on date"}
             color={onDate["ondate"] ? "white" : "black"}
-            backgroundColor={onDate["ondate"] ? "green" : "transparent"}
+            backgroundColor={
+              onDate["ondate"] ? Colors.light.background : "transparent"
+            }
             borderColor="black"
             onPress={() =>
               setOnDate((prev) => ({
@@ -174,7 +177,9 @@ const CreateTaskScreen = ({
           <Button3
             text="Before Date"
             color={onDate["beforedate"] ? "white" : "black"}
-            backgroundColor={onDate["beforedate"] ? "green" : "transparent"}
+            backgroundColor={
+              onDate["beforedate"] ? Colors.light.background : "transparent"
+            }
             borderColor="black"
             onPress={() =>
               setOnDate((prev) => ({
@@ -189,7 +194,9 @@ const CreateTaskScreen = ({
             text={"flexible"}
             borderColor="black"
             color={onDate["flexible"] ? "white" : "black"}
-            backgroundColor={onDate["flexible"] ? "green" : "transparent"}
+            backgroundColor={
+              onDate["flexible"] ? Colors.light.background : "transparent"
+            }
             onPress={() =>
               setOnDate((prev) => ({
                 ...prev,
@@ -206,7 +213,9 @@ const CreateTaskScreen = ({
         <View style={styles.timeView}>
           <Button3
             color={time["morning"] ? "white" : "black"}
-            backgroundColor={time["morning"] ? "green" : "transparent"}
+            backgroundColor={
+              time["morning"] ? Colors.light.background : "transparent"
+            }
             text="Morning"
             time={"BEFORE 10AM"}
             icon={
@@ -246,7 +255,9 @@ const CreateTaskScreen = ({
               }))
             }
             color={time["midday"] ? "white" : "black"}
-            backgroundColor={time["midday"] ? "green" : "transparent"}
+            backgroundColor={
+              time["midday"] ? Colors.light.background : "transparent"
+            }
           />
           <Button3
             text="Afternoon"
@@ -268,7 +279,9 @@ const CreateTaskScreen = ({
               }))
             }
             color={time["afternoon"] ? "white" : "black"}
-            backgroundColor={time["afternoon"] ? "green" : "transparent"}
+            backgroundColor={
+              time["afternoon"] ? Colors.light.background : "transparent"
+            }
           />
           <Button3
             text="Evening"
@@ -290,7 +303,9 @@ const CreateTaskScreen = ({
               }))
             }
             color={time["evening"] ? "white" : "black"}
-            backgroundColor={time["evening"] ? "green" : "transparent"}
+            backgroundColor={
+              time["evening"] ? Colors.light.background : "transparent"
+            }
           />
         </View>
       </View>
@@ -307,13 +322,17 @@ const CreateTaskScreen = ({
           <Button3
             text={"Yes"}
             color={remoteTask ? "white" : "black"}
-            backgroundColor={remoteTask ? "green" : "transparent"}
+            backgroundColor={
+              remoteTask ? Colors.light.background : "transparent"
+            }
             onPress={() => setRemoteTask(true)}
           />
           <Button3
             text={"No"}
             color={!remoteTask ? "white" : "black"}
-            backgroundColor={!remoteTask ? "green" : "transparent"}
+            backgroundColor={
+              !remoteTask ? Colors.light.background : "transparent"
+            }
             onPress={() => setRemoteTask(false)}
           />
         </View>
@@ -367,7 +386,7 @@ const CreateTaskScreen = ({
         <Button3
           text="next"
           color={"white"}
-          backgroundColor="#1DBF73"
+          backgroundColor={Colors.light.background}
           borderColor="#1DBF73"
           onPress={() => {
             setModalVisible(true);
