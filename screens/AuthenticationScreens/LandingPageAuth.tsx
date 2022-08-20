@@ -42,94 +42,102 @@ const LandingPageAuth = ({ navigation }: AuthStackScreenProps<"Root">) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.logoView}>
-          <Image
-            resizeMode="contain"
-            style={styles.logo}
-            source={require("../../assets/images/LandingPageImage.png")}
-          />
+      <View style={{ marginHorizontal: 20 }}>
+        <View style={styles.header}>
+          <View style={styles.logoView}>
+            <Image
+              resizeMode="contain"
+              style={styles.logo}
+              source={require("../../assets/images/LandingPageImage.png")}
+            />
+          </View>
         </View>
-      </View>
-      <View style={styles.authContainer}>
-        <View style={styles.Buttons}>
-          <Button1
-            backgroundColor={Colors.light.background}
-            onPress={LoginNavigation}
-            fontSize={16}
-            marginTop={10}
-          >
-            Continue with Email
-          </Button1>
-          <Button2
-            backgroundColor={Colors.light.background}
-            onPress={() => navigation.navigate("PhoneAuthScreen")}
-            fontSize={16}
-            marginTop={20}
-            iconName="phone-alt"
-            iconColor="white"
-          >
-            Continue with phone
-          </Button2>
-          <Button2
-            backgroundColor="black"
-            fontSize={16}
-            marginTop={20}
-            iconName="apple"
-            iconColor="white"
-          >
-            Continue with Apple
-          </Button2>
+        <View style={styles.authContainer}>
+          <View style={styles.Buttons}>
+            <Button1
+              backgroundColor={Colors.light.background}
+              onPress={LoginNavigation}
+              fontSize={16}
+              marginTop={10}
+            >
+              Continue with Email
+            </Button1>
+            <Button2
+              backgroundColor={Colors.light.background}
+              onPress={() => navigation.navigate("PhoneAuthScreen")}
+              fontSize={16}
+              marginTop={20}
+              iconName="phone-alt"
+              iconColor="white"
+            >
+              Continue with phone
+            </Button2>
+            <Button2
+              backgroundColor="black"
+              fontSize={16}
+              marginTop={20}
+              iconName="apple"
+              iconColor="white"
+            >
+              Continue with Apple
+            </Button2>
 
-          <Button2
-            backgroundColor="#5583EC"
-            fontSize={16}
-            marginTop={20}
-            onPress={() => {
-              promptAsync();
+            <Button2
+              backgroundColor="#5583EC"
+              fontSize={16}
+              marginTop={20}
+              onPress={() => {
+                promptAsync();
+              }}
+              iconName="google"
+              iconColor="white"
+            >
+              Continue with Google
+            </Button2>
+          </View>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              marginVertical: 10,
             }}
-            iconName="google"
-            iconColor="white"
           >
-            Continue with Google
-          </Button2>
-        </View>
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            marginVertical: 10,
-          }}
-        >
-          <Pressable
-            style={{ marginVertical: 10 }}
-            onPress={SignUpNavigation}
-            android_ripple={{ color: "#fff" }}
-          >
-            <Text style={{ fontFamily: "Light-1" }}>
-              Don't have an account ?
-              <Text
-                style={{ color: Colors.light.background, fontFamily: "Main-1" }}
-              >
-                {" "}
-                Sign Up
+            <Pressable
+              style={{ marginVertical: 10 }}
+              onPress={SignUpNavigation}
+              android_ripple={{ color: "#fff" }}
+            >
+              <Text style={{ fontFamily: "Inter-Regular" }}>
+                Don't have an account ?
+                <Text
+                  style={{
+                    color: Colors.light.background,
+                    fontFamily: "Inter-Regular",
+                  }}
+                >
+                  {" "}
+                  Sign Up
+                </Text>
               </Text>
-            </Text>
-          </Pressable>
+            </Pressable>
+          </View>
         </View>
-        <Footer />
       </View>
+      <Footer />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    margin: 25,
+    borderWidth: 3,
+    flex: 1,
+
+    justifyContent: "space-between",
   },
 
   header: {
-    height: "45%",
+    height: "50%",
     justifyContent: "center",
   },
 

@@ -1,5 +1,12 @@
 import React from "react";
-import { View, StyleSheet, Text, Pressable } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Pressable,
+  ScrollView,
+  Image,
+} from "react-native";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MainTabScreenProps } from "../../types";
@@ -115,13 +122,61 @@ export const CategoriesScreen = ({
   navigation,
 }: MainTabScreenProps<"CategoriesScreen">) => {
   return (
-    <View
-      style={{
-        flex: 1,
+    <ScrollView
+      contentContainerStyle={{
         flexDirection: "row",
         flexWrap: "wrap",
       }}
     >
+      <ScrollView
+        contentContainerStyle={{
+          backgroundColor: "white",
+          marginVertical: 15,
+        }}
+        horizontal
+        scrollEnabled
+        showsHorizontalScrollIndicator={false}
+      >
+        <View style={{ width: 280, paddingVertical: 15, paddingLeft: 10 }}>
+          <Image
+            style={{
+              width: "100%",
+              height: 180,
+              borderRadius: 10,
+              padding: 30,
+            }}
+            source={{
+              uri: "https://images.unsplash.com/photo-1513128034602-7814ccaddd4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80",
+            }}
+          />
+        </View>
+        <View style={{ width: 280, padding: 15 }}>
+          <Image
+            style={{
+              width: "100%",
+              height: 180,
+              borderRadius: 10,
+              padding: 30,
+            }}
+            source={{
+              uri: "https://images.unsplash.com/photo-1657664066011-ed54a1be81d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+            }}
+          />
+        </View>
+        <View style={{ width: 280, padding: 15 }}>
+          <Image
+            style={{
+              width: "100%",
+              height: 180,
+              borderRadius: 10,
+              padding: 30,
+            }}
+            source={{
+              uri: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+            }}
+          />
+        </View>
+      </ScrollView>
       <View
         style={{
           flexDirection: "row",
@@ -164,7 +219,7 @@ export const CategoriesScreen = ({
           />
         );
       })}
-    </View>
+    </ScrollView>
   );
 };
 

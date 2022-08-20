@@ -55,11 +55,11 @@ const AccountScreen = ({ navigation }: MainTabScreenProps<"AccountScreen">) => {
             </Pressable>
           </View>
           <View style={{ marginLeft: 15, alignItems: "flex-start" }}>
-            <Text style={{ fontSize: 25, fontFamily: "Main-1" }}>
+            <Text style={{ fontSize: 25, fontFamily: "Inter-Regular" }}>
               {ctx.userData && ctx.userData.Name}
             </Text>
-            <Text style={{ fontFamily: "Light-1" }}>Ludhiana,Punjab</Text>
-            <Text style={{ fontFamily: "Light-1" }}>{ctx.user.email}</Text>
+            <Text style={{ fontFamily: "Inter-Light" }}>Ludhiana,Punjab</Text>
+            <Text style={{ fontFamily: "Inter-Light" }}>{ctx.user.email}</Text>
           </View>
         </View>
         {/* 

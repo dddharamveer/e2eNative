@@ -1,6 +1,11 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { AntDesign, EvilIcons } from "@expo/vector-icons";
+import {
+  AntDesign,
+  EvilIcons,
+  Ionicons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import MyTasks from "../screens/Main/MyTasks";
 import React, { Children, useEffect } from "react";
 
@@ -23,6 +28,10 @@ import Colors from "../constants/Colors";
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
+function Icon({ name, color, size }: any) {
+  return;
+}
+
 export default function MainBottomTabs({
   navigation,
 }: MainStackScreenProps<"Root">) {
@@ -41,9 +50,15 @@ export default function MainBottomTabs({
           navigation,
           route,
         }: MainTabScreenProps<"CategoriesScreen">) => ({
-          tabBarIcon: ({ color, size }) => {
-            return <AntDesign name="appstore1" color={color} size={size} />;
+          title: "Home",
+          tabBarIcon: ({ color, size, focused }) => {
+            return focused ? (
+              <MaterialCommunityIcons name="album" color={color} size={size} />
+            ) : (
+              <MaterialCommunityIcons name="adjust" color={color} size={size} />
+            );
           },
+
           header: () => <Header navigation={navigation} route={route} />,
         })}
       />
@@ -51,11 +66,16 @@ export default function MainBottomTabs({
         name="BrowseTasks"
         component={BrowseTasksScreen}
         options={{
-          tabBarIcon: ({ color, size }) => {
-            return <EvilIcons name="search" size={size} color={color} />;
+          title: "Browse",
+          tabBarIcon: ({ color, size, focused }) => {
+            return focused ? (
+              <Ionicons name="search-circle" size={27} color={color} />
+            ) : (
+              <Ionicons name="search-circle-outline" size={27} color={color} />
+            );
           },
           headerRight: () => (
-            <EvilIcons name="search" style={{ marginRight: 20 }} size={30} />
+            <Ionicons name="search" style={{ marginRight: 20 }} size={30} />
           ),
         }}
       />
@@ -64,8 +84,13 @@ export default function MainBottomTabs({
         name="MyTasks"
         component={MyTasks}
         options={{
-          tabBarIcon: ({ color, size }) => {
-            return <EvilIcons name="archive" size={size} color={color} />;
+          title: "My Tasks",
+          tabBarIcon: ({ color, size, focused }) => {
+            return focused ? (
+              <Ionicons name="md-book" size={size} color={color} />
+            ) : (
+              <Ionicons name="md-book-outline" size={size} color={color} />
+            );
           },
         }}
       />
@@ -73,8 +98,17 @@ export default function MainBottomTabs({
         name="Notification"
         component={Notifications}
         options={{
-          tabBarIcon: ({ color, size }) => {
-            return <EvilIcons name="comment" size={size} color={color} />;
+          title: "Messages",
+          tabBarIcon: ({ color, size, focused }) => {
+            return focused ? (
+              <Ionicons name="notifications-circle" size={27} color={color} />
+            ) : (
+              <Ionicons
+                name="notifications-circle-outline"
+                size={27}
+                color={color}
+              />
+            );
           },
         }}
       />
@@ -83,8 +117,21 @@ export default function MainBottomTabs({
         name="AccountScreen"
         component={AccountScreen}
         options={{
-          tabBarIcon: ({ color, size }) => {
-            return <EvilIcons name="user" size={size} color={color} />;
+          title: "Account",
+          tabBarIcon: ({ color, size, focused }) => {
+            return focused ? (
+              <MaterialCommunityIcons
+                name="account-circle"
+                color={color}
+                size={size}
+              />
+            ) : (
+              <MaterialCommunityIcons
+                name="account-circle-outline"
+                color={color}
+                size={size}
+              />
+            );
           },
           headerShown: false,
         }}

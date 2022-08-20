@@ -4,8 +4,8 @@ const Footer = () => {
   return (
     <View style={styles.terms}>
       <Text style={styles.FootersubTitle}>
-        By clicking "Continue {"\n"}with Email/Apple/Google/Facebook" above you
-        agree to Tasker's Terms of Service and Privacy Policy.
+        By clicking above you agree to App's Terms of Service and Privacy
+        Policy.
       </Text>
     </View>
   );
@@ -14,10 +14,11 @@ const Footer = () => {
 export default Footer;
 
 const styles = StyleSheet.create({
-  terms: {},
+  terms: {
+    margin: 10,
+  },
   FootersubTitle: {
     textAlign: "center",
     color: "black",
-    fontFamily: "Main-1",
   },
 });

@@ -14,8 +14,12 @@ export default function useCachedResources() {
         await Font.loadAsync({
           ...FontAwesome.font,
           "space-mono": require("../assets/fonts/SpaceMono-Regular.ttf"),
-          "Main-1": require("../assets/fonts/Roboto-Medium.ttf"),
-          "Light-1": require("../assets/fonts/Roboto-Light.ttf"),
+          "Inter-Black": require("../assets/fonts/Inter-Black.ttf"),
+          "Inter-Bold": require("../assets/fonts/Inter-Bold.ttf"),
+          "Inter-Extralight": require("../assets/fonts/Inter-ExtraLight.ttf"),
+          "Inter-Light": require("../assets/fonts/Inter-Light.ttf"),
+          "Inter-SemiBold": require("../assets/fonts/Inter-SemiBold.ttf"),
+          "Inter-Regular": require("../assets/fonts/Inter-Regular.ttf"),
         });
       } catch (e) {
         console.warn(e);

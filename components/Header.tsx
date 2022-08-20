@@ -7,6 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { AuthContext } from "../store/authContext";
 import { MainTabScreenProps } from "../types";
 import { FontAwesome } from "@expo/vector-icons";
+import Colors from "../constants/Colors";
 
 export const Header = ({
   navigation,
@@ -17,24 +18,28 @@ export const Header = ({
     <SafeAreaView
       style={{
         backgroundColor: "white",
-        paddingHorizontal: 25,
-        paddingVertical: 15,
+        paddingHorizontal: 20,
+        paddingBottom: 10,
+        paddingTop: 35,
         flexDirection: "row",
         justifyContent: "space-between",
+        alignItems: "center",
       }}
     >
-      <View style={{ flexDirection: "column" }}>
+      <View style={{ flexDirection: "column", marginLeft: 10 }}>
+        <Text style={{ fontFamily: "Inter-Light", fontSize: 14 }}>
+          Welcome back,
+        </Text>
         <Text
           style={[
             {
-              fontSize: 16,
-              fontFamily: "Light-1",
+              fontSize: 22,
+              fontFamily: "Inter-Regular",
             },
           ]}
         >
           {ctx.userData && ctx.userData.Name}
         </Text>
-        <Text style={[{ fontSize: 20 }, styles.font]}>Good Morning !</Text>
       </View>
       <Pressable
         onPress={() => {
@@ -43,10 +48,10 @@ export const Header = ({
       >
         <Image
           style={{
-            borderWidth: 1,
-
-            width: 40,
-            height: 40,
+            borderWidth: 2,
+            borderColor: Colors.light.background,
+            width: 50,
+            height: 50,
             borderRadius: 25,
           }}
           source={{
@@ -61,9 +66,7 @@ export const Header = ({
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginBottom: 10,
-  },
+  container: {},
   title: {
     fontSize: 20,
   },
