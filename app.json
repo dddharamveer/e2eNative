@@ -4,7 +4,7 @@
     "slug": "AndroidAppTasker",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/4311.jpg",
+    "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -32,7 +32,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#fff"
       },
       "package": "com.dharamveersingh.AndroidAppTasker"
     },
