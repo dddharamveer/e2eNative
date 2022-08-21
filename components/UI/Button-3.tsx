@@ -30,7 +30,7 @@ const Button3 = ({
   ) : (
     <Pressable
       onPress={onPress}
-      style={{ flex: 1, margin: 5, paddingVertical: 5 }}
+      style={{ flex: 1, margin: 5, paddingVertical: 5, height: 50 }}
     >
       <Text
         style={[
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   timeBtn: {
     borderRadius: 10,
     borderWidth: 1,
-    marginBottom: 20,
+    marginVertical: 10,
     justifyContent: "center",
     width: 90,
     height: 90,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textAlignVertical: "center",
     fontSize: 13.5,
-    borderRadius: 5,
+    borderRadius: 50,
     textTransform: "uppercase",
     borderWidth: 1,
   },

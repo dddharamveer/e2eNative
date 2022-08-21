@@ -29,7 +29,7 @@ export default function MainNavigation() {
         options={{
           animation: "slide_from_bottom",
           headerShown: true,
-          title: "Title & Date",
+          title: "Create a new task",
         }}
       />
       <Stack.Screen name="Profile" component={UserProfile} />
