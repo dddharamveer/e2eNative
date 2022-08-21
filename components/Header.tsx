@@ -8,19 +8,17 @@ import { AuthContext } from "../store/authContext";
 import { MainTabScreenProps } from "../types";
 import { FontAwesome } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
+import { useNavigation } from "@react-navigation/native";
 
-export const Header = ({
-  navigation,
-}: MainTabScreenProps<"CategoriesScreen">) => {
+export const Header = ({ height }: any) => {
   const ctx = useContext(AuthContext);
-
+  const navigation = useNavigation();
   return (
     <SafeAreaView
       style={{
         backgroundColor: "white",
-        paddingHorizontal: 20,
-        paddingBottom: 10,
-        paddingTop: 20,
+        height: 100,
+        padding: 15,
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",

@@ -59,7 +59,7 @@ export default function MainBottomTabs({
             );
           },
 
-          header: () => <Header navigation={navigation} route={route} />,
+          headerShown: false,
         })}
       />
       <Tab.Screen
