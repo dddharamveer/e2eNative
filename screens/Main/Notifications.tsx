@@ -19,11 +19,13 @@ export default function Notifications({ navigation }: { navigation: any }) {
   const [name, setName] = React.useState<string>("");
   const [user, setUser] = React.useState<any>(null);
   const [chatrooms, setChatrooms] = React.useState<any>([]);
+  const [loading , setLoading] = React.useState<boolean>(false);
 
   const ctx = useContext<any>(
     AuthContext
   );
   const searchUser = async () => {
+  
     const collectionref = collection(db, "users");
     const querye = query(collectionref, where("Name", "==", name), limit(1));
     const querySnapshot = await getDocs(querye);
@@ -33,6 +35,7 @@ export default function Notifications({ navigation }: { navigation: any }) {
         array[0]
       );
     }
+  
   }
   if (!Notifications_messages) {
     return noMessages;
@@ -41,6 +44,7 @@ export default function Notifications({ navigation }: { navigation: any }) {
  
 
   const getUserChats = async () => {
+      setLoading(true);
     console.log(ctx.userData.uid);
     
     const collectionref = collection(db, "users");
@@ -80,11 +84,13 @@ export default function Notifications({ navigation }: { navigation: any }) {
     console.log(chatroom, "chatroom");
     
     setChatrooms(chatroom);
+    setLoading(false);
   };
 
-console.log(chatrooms);
+
 
   const createNewChat = async (user: any) => {
+    setLoading(true);
     const collectionref = collection(db, "chats");
     const collectionref2 = collection(db, "users");
     const userExists = chatrooms.find((chat: any) => chat.users.find((userd: any) => userd === user.uid));
@@ -113,7 +119,7 @@ console.log(chatrooms);
       console.log("Chat already exists");
 
     }
-
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -129,6 +135,12 @@ console.log(chatrooms);
     navigation
   ]);
 
+
+  if(loading){
+    return <View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
+      <Text>Loading...</Text>
+    </View>
+  }
   return (
     <ScrollView>
 
@@ -155,7 +167,9 @@ console.log(chatrooms);
             <View >
               <Text>{user?.Name}</Text>
               <Text>{user?.email}</Text></View>
-            <Pressable onPress={
+            <Pressable
+              android_ripple={{ color: "white"}}
+            onPress={
               () => {
                 createNewChat(user);
 
@@ -180,7 +194,7 @@ console.log(chatrooms);
             return (
               <MessagesCard
                 key={index}
-               latestMessage = {chat.messages[chat.messages.length-1].message}
+               latestMessage = {chat.messages[chat.messages.length-1]?.message}
 
                 openChat={() => {
                   navigation.navigate("Chat", { chat: chat });
