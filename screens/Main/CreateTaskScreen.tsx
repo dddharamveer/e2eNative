@@ -106,7 +106,7 @@ const CreateTaskScreen = ({
       date: date,
       Budget: data?.budget,
       status: "open",
-      profilePic: userInfo?.profilePic,
+      profilePic: userInfo?.profilePic? userInfo?.profilePic : "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
       uid: ctx.user.uid,
       createdAt: serverTimestamp(),
       type: onDate,
@@ -322,6 +322,10 @@ const CreateTaskScreen = ({
           style={{ alignSelf: "center" }}
         />
         <SelectDropdown
+        rowTextForSelection={(item, index) => {
+            return item;
+          } 
+        }
           data={location}
           renderCustomizedButtonChild={() => {
             return (

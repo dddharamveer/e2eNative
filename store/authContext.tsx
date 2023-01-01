@@ -13,6 +13,7 @@ type AuthContextType = {
   userData: {
     Name: string;
     profilePic: string;
+    uid : string;
   };
   changeUserData: ({ profilePic }: { profilePic: any }) => void;
   logout: () => void;
@@ -24,6 +25,8 @@ export const AuthContext = createContext<AuthContextType>({
   userData: {
     Name: "",
     profilePic: "",
+    uid : "",
+    
   },
   changeUserData: () => {},
   logout: () => {},

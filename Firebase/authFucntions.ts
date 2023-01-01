@@ -10,17 +10,20 @@ import { auth, db } from "./firebaseConfig";
 export async function createAccountWithPassword(
   email: string,
   password: string,
+  name: string
 ) {
   try {
     const response = await createUserWithEmailAndPassword(
       auth,
       email,
-      password,
+      password
     );
 
     return setDoc(doc(db, "users", response.user.uid), {
       email: response.user.email,
       AccountCreatedOn: serverTimestamp(),
+      Name: name,
+      uid: response.user.uid,
     });
   } catch (err) {
     console.log(err);

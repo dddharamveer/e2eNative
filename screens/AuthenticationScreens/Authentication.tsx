@@ -12,14 +12,16 @@ const Authentication = ({
   size,
   auth,
   error,
+  
 }: {
   type: string;
   size: number;
-  auth: (email: string, password: string) => {};
+  auth: (email: string, password: string,name:string) => {};
   error: string;
 }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [name,setName ] = useState<string>("");
   function emailHandler(text: string) {
     setEmail(text);
   }
@@ -46,8 +48,13 @@ const Authentication = ({
       Alert.alert("length prob");
       return;
     }
+    if (type === "Sign Up" && name?.trim().length === 0) {
+      Alert.alert("name em");
+      return;
+    }
+    
 
-    auth(email, password);
+    auth(email, password,name);
   }
 
   return (
@@ -60,6 +67,13 @@ const Authentication = ({
         {type === "Sign Up" && (
           <Text style={styles.account}>Create a new account</Text>
         )}
+       { 
+        type === "Sign Up" &&
+       <TextInputUi name="Name"  onChangeText={
+          (text:string) => {
+            setName(text);
+          }
+        } />}
         <TextInputUi name="Email" onChangeText={emailHandler} />
         <TextInputUi name="Password" password onChangeText={passwordHandler} />
       </View>

@@ -85,11 +85,11 @@ const UserProfile = ({ navigation }: MainStackScreenProps<"Profile">) => {
       >
         <Image
           source={
-            ctx.userData
-              ? { uri: ctx.userData.profilePic }
-              : {
-                  uri: "https://images.unsplash.com/photo-1472847720459-21ede812f22a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1467&q=80",
-                }
+            { uri: ctx.userData.profilePic?
+                  ctx.userData.profilePic:
+                  "https://images.unsplash.com/photo-1472847720459-21ede812f22a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1467&q=80"}
+              
+             
           }
           style={{ width: 95, height: 95, borderRadius: 50 }}
         />

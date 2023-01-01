@@ -29,9 +29,9 @@ import MainBottomTabs from "./MainBottomTabs";
 import MainNavigation from "./MainNavigation";
 
 export default function Navigation({
-  colorScheme,
+ 
 }: {
-  colorScheme: ColorSchemeName;
+
 }) {
   const ctx = React.useContext(AuthContext);
 
@@ -40,7 +40,7 @@ export default function Navigation({
   }
   return (
     <NavigationContainer
-      theme={colorScheme === "light" ? DarkTheme : DefaultTheme}
+     
     >
       {ctx.user ? <MainNavigation /> : <AuthNavigation />}
     </NavigationContainer>

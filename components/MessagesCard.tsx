@@ -3,9 +3,10 @@ import React, { FC } from "react";
 
 type MessagesCard = {
   openChat?: () => void;
+  latestMessage?: string;
 };
 
-const MessagesCard: React.FC<MessagesCard> = ({ openChat }) => {
+const MessagesCard: React.FC<MessagesCard> = ({ openChat,latestMessage }) => {
   return (
     <Pressable
       onPress={openChat}
@@ -23,7 +24,7 @@ const MessagesCard: React.FC<MessagesCard> = ({ openChat }) => {
       >
         <Text style={{ fontWeight: "700" }}>Jasdeep kaur</Text> commented on{" "}
         <Text style={{ fontWeight: "700" }}>
-          'Move pot plants to new house'
+          {latestMessage  ?   latestMessage:"No messages yet"}
         </Text>
       </Text>
       <Text style={{ alignSelf: "flex-end", color: "grey" }}>10 mins</Text>

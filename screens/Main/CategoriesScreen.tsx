@@ -192,9 +192,9 @@ export const CategoriesScreen = ({
               borderRadius: 25,
             }}
             source={{
-              uri: ctx.userData
+              uri: ctx?.userData?.profilePic
                 ? ctx.userData.profilePic
-                : "https://images.unsplash.com/photo-1610559176044-d2695ca6c63d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2138&q=80",
+                : "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
             }}
           />
         </Pressable>

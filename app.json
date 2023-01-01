@@ -34,10 +34,18 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#fff"
       },
-      "package": "com.dharamveersingh.AndroidAppTasker"
+      "package": "com.dharamveersingh.AndroidAppTasker",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "dfb9498a-4987-46b7-ba4b-e2c6ed6a7349"
+      }
     }
   }
 }

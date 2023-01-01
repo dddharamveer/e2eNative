@@ -4,9 +4,9 @@ import { createAccountWithPassword } from "../../Firebase/authFucntions";
 import Authentication from "./Authentication";
 
 const SignUpWithEmail = () => {
-  async function createAccount(email: string, password: string) {
+  async function createAccount(email: string, password: string,name:string) {
     try {
-      const user = await createAccountWithPassword(email, password);
+      const user = await createAccountWithPassword(email, password,name);
     } catch (err) {
       console.log(err);
     }
