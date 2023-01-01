@@ -4,9 +4,14 @@ import React, { FC } from "react";
 type MessagesCard = {
   openChat?: () => void;
   latestMessage?: string;
+  name?: string;
 };
 
-const MessagesCard: React.FC<MessagesCard> = ({ openChat,latestMessage }) => {
+const MessagesCard: React.FC<MessagesCard> = ({
+  openChat,
+  latestMessage,
+  name,
+}) => {
   return (
     <Pressable
       onPress={openChat}
@@ -19,15 +24,25 @@ const MessagesCard: React.FC<MessagesCard> = ({ openChat,latestMessage }) => {
         }}
       />
 
-      <Text
-        style={{ flex: 1, flexWrap: "wrap", marginLeft: 20, marginRight: 10 }}
+      <View
+        style={{
+          flex: 1,
+          flexWrap: "wrap",
+          flexDirection: "column",
+          marginLeft: 20,
+          marginRight: 10,
+        }}
       >
-        <Text style={{ fontWeight: "700" }}>Jasdeep kaur</Text> commented on{" "}
-        <Text style={{ fontWeight: "700" }}>
-          {latestMessage  ?   latestMessage:"No messages yet"}
+        <Text style={{ fontWeight: "500", fontSize: 16 }}>{name}</Text>
+        <Text
+          style={{
+            color: "grey",
+          }}
+        >
+          {latestMessage ? latestMessage : "No messages yet"}
         </Text>
-      </Text>
-      <Text style={{ alignSelf: "flex-end", color: "grey" }}>10 mins</Text>
+      </View>
+      <Text style={{ alignSelf: "center", color: "grey" }}>09:38 AM</Text>
     </Pressable>
   );
 };
@@ -36,7 +51,6 @@ export default MessagesCard;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: "row",
     marginHorizontal: 20,
     marginVertical: 10,
@@ -44,8 +58,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     alignItems: "center",
-    // alignContent:'flex-start'
-    // flexWrap:"wrap"
+    backgroundColor: "white",
   },
   profileImg: {
     width: 50,
@@ -53,7 +66,6 @@ const styles = StyleSheet.create({
     borderRadius: 50 / 2,
   },
   pressed: {
-    backgroundColor: "grey",
     opacity: 0.7,
   },
 });

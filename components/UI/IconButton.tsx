@@ -10,6 +10,7 @@ type IconButton = {
   iconColor: string;
   onPress?: () => void;
   elevation?: number;
+  marginLeft?: number;
 };
 const IconButton: React.FC<IconButton> = ({
   name,
@@ -18,12 +19,16 @@ const IconButton: React.FC<IconButton> = ({
   iconColor,
   elevation,
   onPress,
+  marginLeft,
 }) => {
   return (
     <Pressable
       style={({ pressed }) => [
         styles.container,
         { backgroundColor: color },
+        {
+          marginLeft: marginLeft,
+        },
         pressed && styles.pressed,
       ]}
       onPress={onPress}
@@ -42,6 +47,7 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     borderRadius: 50 / 2,
+    elevation: 5,
   },
   pressed: {
     opacity: 0.7,
